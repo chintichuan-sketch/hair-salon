@@ -3,21 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxe Hair Studio | Premium Hair Salon</title>
-    <meta name="description" content="Luxe Hair Studio offers premium hair services including cuts, coloring, styling, and treatments. Book your appointment today!">
+    <title>Verona Hair Atelier | Artisan Hair Studio in Downtown Seattle</title>
+    <meta name="description" content="Verona Hair Atelier: Where hair artistry meets personalized care. Experience bespoke cuts, organic color, and hair wellness treatments in our Seattle studio.">
     <style>
         /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+        
+        :root {
+            --primary: #8B7355;
+            --secondary: #D4C1A5;
+            --accent: #5D8A7E;
+            --dark: #2A2A2A;
+            --light: #F8F5F2;
+            --text: #333333;
         }
         
         body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
+            line-height: 1.7;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
         }
         
         .container {
@@ -26,31 +36,75 @@
             margin: 0 auto;
         }
         
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
         /* Header Styles */
         header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
         }
         
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 1.2rem 0;
         }
         
         .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #d4af37;
+            display: flex;
+            align-items: center;
             text-decoration: none;
         }
         
-        .logo span {
-            color: #333;
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo-text span {
+            color: var(--primary);
         }
         
         nav ul {
@@ -59,323 +113,401 @@
         }
         
         nav ul li {
-            margin-left: 25px;
+            margin-left: 2rem;
         }
         
         nav ul li a {
             text-decoration: none;
-            color: #333;
+            color: var(--dark);
             font-weight: 500;
             transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
         }
         
         nav ul li a:hover {
-            color: #d4af37;
+            color: var(--primary);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
         }
         
         .cta-button {
-            background-color: #d4af37;
+            background-color: var(--primary);
             color: white;
-            padding: 10px 20px;
+            padding: 0.8rem 1.8rem;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            display: inline-block;
+            border: 2px solid var(--primary);
         }
         
         .cta-button:hover {
-            background-color: #b8941f;
+            background-color: transparent;
+            color: var(--primary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            height: 80vh;
+            background: linear-gradient(135deg, rgba(139, 115, 85, 0.9) 0%, rgba(93, 138, 126, 0.8) 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23F8F5F2"/><path d="M0 0L100 100M100 0L0 100" stroke="%23D4C1A5" stroke-width="1"/></svg>');
+            height: 100vh;
             display: flex;
             align-items: center;
-            text-align: center;
+            text-align: left;
             color: white;
+            padding-top: 80px;
         }
         
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 700px;
         }
         
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            color: white;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
         }
         
         .hero .cta-button {
+            background-color: white;
+            color: var(--primary);
             font-size: 1.1rem;
-            padding: 15px 30px;
+            padding: 1rem 2.5rem;
         }
         
-        /* Services Section */
-        .services {
-            padding: 80px 0;
+        .hero .cta-button:hover {
+            background-color: transparent;
+            color: white;
+            border-color: white;
+        }
+        
+        /* Philosophy Section */
+        .philosophy {
+            padding: 6rem 0;
             background-color: white;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 4rem;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
         }
         
-        .section-title p {
-            color: #777;
-            max-width: 600px;
-            margin: 0 auto;
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 20%;
+        }
+        
+        .philosophy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .philosophy-text h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .philosophy-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .philosophy-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .philosophy-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background-color: var(--light);
         }
         
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 2.5rem;
         }
         
         .service-card {
-            background-color: #fff;
+            background-color: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         
-        .service-img {
-            height: 200px;
-            background-color: #f5f5f5;
-            background-size: cover;
-            background-position: center;
+        .service-icon {
+            height: 80px;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--dark);
         }
         
         .service-content {
-            padding: 20px;
+            padding: 2rem;
         }
         
         .service-content h3 {
-            margin-bottom: 10px;
-            color: #333;
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
         
         .service-content p {
-            color: #777;
-            margin-bottom: 15px;
+            color: var(--text);
+            margin-bottom: 1.5rem;
         }
         
-        .service-price {
-            font-weight: 700;
-            color: #d4af37;
-            font-size: 1.2rem;
+        .service-features {
+            list-style: none;
+            margin-top: 1.5rem;
         }
         
-        /* About Section */
-        .about {
-            padding: 80px 0;
-            background-color: #f5f5f5;
+        .service-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
         }
         
-        .about-content {
+        .service-features li:before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* Education Section */
+        .education {
+            padding: 6rem 0;
+            background-color: white;
+        }
+        
+        .education-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 4rem;
             align-items: center;
         }
         
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        
-        .about-text p {
-            margin-bottom: 20px;
-            color: #555;
-        }
-        
-        .about-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .testimonial-card {
-            background-color: #f9f9f9;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            color: #555;
-        }
-        
-        .testimonial-author {
+        .education-articles {
             display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .article-card {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .article-card:hover {
+            transform: translateX(10px);
+        }
+        
+        .article-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .read-more {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
             align-items: center;
+            margin-top: 1rem;
         }
         
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #ddd;
-            margin-right: 15px;
+        .read-more:after {
+            content: '→';
+            margin-left: 5px;
+            transition: transform 0.3s;
         }
         
-        .author-info h4 {
-            margin-bottom: 5px;
-            color: #333;
+        .read-more:hover:after {
+            transform: translateX(5px);
         }
         
-        .author-info p {
-            color: #777;
-            font-size: 0.9rem;
+        /* Team Section */
+        .team {
+            padding: 6rem 0;
+            background-color: var(--light);
         }
         
-        /* CTA Section */
-        .cta-section {
-            padding: 80px 0;
-            background: linear-gradient(rgba(212, 175, 55, 0.9), rgba(212, 175, 55, 0.9)), url('https://images.unsplash.com/photo-1595476108010-b4d1f102b1e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .team-member {
             text-align: center;
-            color: white;
         }
         
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        .member-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background-color: var(--secondary);
+            overflow: hidden;
         }
         
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
-        .cta-section .cta-button {
-            background-color: white;
-            color: #d4af37;
+        .member-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
         }
         
-        .cta-section .cta-button:hover {
-            background-color: #f5f5f5;
+        .member-role {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .member-bio {
+            color: var(--text);
+            font-size: 0.95rem;
         }
         
         /* Contact Section */
         .contact {
-            padding: 80px 0;
-            background-color: #f5f5f5;
+            padding: 6rem 0;
+            background-color: white;
         }
         
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 4rem;
         }
         
         .contact-info h3 {
-            margin-bottom: 20px;
-            color: #333;
+            margin-bottom: 2rem;
+            color: var(--primary);
         }
         
         .contact-details {
-            margin-bottom: 30px;
+            margin-bottom: 3rem;
         }
         
         .contact-item {
             display: flex;
-            margin-bottom: 15px;
+            margin-bottom: 1.5rem;
         }
         
         .contact-icon {
-            width: 40px;
-            height: 40px;
-            background-color: #d4af37;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
-            color: white;
+            margin-right: 1rem;
+            color: var(--dark);
+            flex-shrink: 0;
         }
         
         .contact-text h4 {
-            margin-bottom: 5px;
-            color: #333;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
         }
         
         .contact-text p {
-            color: #777;
+            color: var(--text);
+            margin-bottom: 0;
         }
         
         .contact-form {
-            background-color: white;
-            padding: 30px;
+            background-color: var(--light);
+            padding: 2.5rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            color: #333;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
             font-weight: 500;
         }
         
         .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: 0.8rem 1rem;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
+            transition: border-color 0.3s;
         }
         
         .form-control:focus {
             outline: none;
-            border-color: #d4af37;
+            border-color: var(--primary);
         }
         
         textarea.form-control {
@@ -385,21 +517,22 @@
         
         /* Footer */
         footer {
-            background-color: #333;
+            background-color: var(--dark);
             color: white;
-            padding: 50px 0 20px;
+            padding: 4rem 0 2rem;
         }
         
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
         
         .footer-col h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
         }
         
         .footer-col ul {
@@ -407,7 +540,7 @@
         }
         
         .footer-col ul li {
-            margin-bottom: 10px;
+            margin-bottom: 0.8rem;
         }
         
         .footer-col ul li a {
@@ -417,61 +550,105 @@
         }
         
         .footer-col ul li a:hover {
-            color: #d4af37;
+            color: var(--secondary);
         }
         
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 1rem;
         }
         
         .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: #444;
-            border-radius: 50%;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
             color: white;
             text-decoration: none;
             transition: background-color 0.3s;
         }
         
         .social-links a:hover {
-            background-color: #d4af37;
+            background-color: var(--primary);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #444;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
             color: #bbb;
             font-size: 0.9rem;
         }
         
         /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
             }
             
-            nav ul {
-                margin: 20px 0;
-            }
-            
-            .hero h1 {
+            h2 {
                 font-size: 2.2rem;
             }
             
-            .about-content,
+            .philosophy-content,
+            .education-content,
             .contact-container {
                 grid-template-columns: 1fr;
+                gap: 3rem;
             }
             
-            .about-image {
+            .philosophy-image {
                 order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            nav ul {
+                margin: 1.5rem 0;
+            }
+            
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .hero {
+                text-align: center;
+                height: auto;
+                padding: 120px 0 80px;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                top: 1.5rem;
+                right: 1rem;
+            }
+            
+            nav {
+                width: 100%;
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul li {
+                margin: 0.8rem 0;
             }
         }
     </style>
@@ -480,26 +657,52 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">LUXE<span>HAIR</span></a>
-            <nav>
+            <a href="#" class="logo">
+                <div class="logo-icon">V</div>
+                <div class="logo-text">Verona<span>Atelier</span></div>
+            </a>
+            <div class="mobile-menu">☰</div>
+            <nav id="main-nav">
                 <ul>
-                    <li><a href="#home">Home</a></li>
+                    <li><a href="#philosophy">Our Philosophy</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#education">Hair Wellness</a></li>
+                    <li><a href="#team">Our Artisans</a></li>
+                    <li><a href="#contact">Visit Us</a></li>
                 </ul>
             </nav>
-            <a href="#contact" class="cta-button">Book Now</a>
+            <a href="#contact" class="cta-button">Book Consultation</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero">
         <div class="container hero-content">
-            <h1>Transform Your Look at Luxe Hair Studio</h1>
-            <p>Experience premium hair services with our expert stylists. From cuts to color, we bring your vision to life.</p>
-            <a href="#contact" class="cta-button">Book Your Appointment</a>
+            <h1>Where Hair Becomes Art</h1>
+            <p>At Verona Hair Atelier, we believe your hair is your most personal accessory. Our artisan stylists craft bespoke looks that enhance your natural beauty and reflect your unique personality.</p>
+            <a href="#contact" class="cta-button">Schedule Your Transformation</a>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy" id="philosophy">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Philosophy</h2>
+                <p>We approach hair as an art form and a vital expression of self</p>
+            </div>
+            <div class="philosophy-content">
+                <div class="philosophy-text">
+                    <h3>Beyond Beauty: The Verona Approach</h3>
+                    <p>Founded on the principle that exceptional hair begins with understanding, our stylists take time to listen, assess, and collaborate with you. We don't follow trends—we create personalized styles that complement your features, lifestyle, and personality.</p>
+                    <p>Our studio exclusively uses plant-based color and sustainable products that nourish your hair while delivering stunning results. We believe beautiful hair should also be healthy hair.</p>
+                    <p>Every visit to Verona is a holistic experience—from our calming environment to our detailed consultations and precision craftsmanship. We're not just styling hair; we're enhancing confidence.</p>
+                    <a href="#contact" class="cta-button">Experience the Difference</a>
+                </div>
+                <div class="philosophy-image">
+                    <div style="width:100%;height:400px;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;font-size:1.2rem;">Studio Environment Image</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -507,177 +710,210 @@
     <section class="services" id="services">
         <div class="container">
             <div class="section-title">
-                <h2>Our Services</h2>
-                <p>We offer a wide range of hair services to help you look and feel your best.</p>
+                <h2>Artisan Services</h2>
+                <p>Precision techniques tailored to your unique hair needs</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="service-icon">✂️</div>
                     <div class="service-content">
-                        <h3>Hair Cutting & Styling</h3>
-                        <p>Professional haircuts and styling tailored to your face shape and personal style.</p>
-                        <p class="service-price">Starting at $45</p>
+                        <h3>Signature Cutting</h3>
+                        <p>Our precision cutting techniques are designed to enhance your bone structure and bring balance to your features. Each cut is customized to work with your hair's natural texture and growth patterns.</p>
+                        <ul class="service-features">
+                            <li>Personalized shape analysis</li>
+                            <li>Texture-specific techniques</li>
+                            <li>Style training for at-home maintenance</li>
+                            <li>Dry cutting for precision</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1559599101-f09722fb4948?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="service-icon">🎨</div>
                     <div class="service-content">
-                        <h3>Hair Coloring</h3>
-                        <p>From subtle highlights to bold fashion colors, our color specialists create your perfect look.</p>
-                        <p class="service-price">Starting at $75</p>
+                        <h3>Organic Color Design</h3>
+                        <p>Using plant-based color systems free of ammonia and resorcinol, we create dimensional color that enhances your natural beauty while improving hair health.</p>
+                        <ul class="service-features">
+                            <li>Plant-based color formulations</li>
+                            <li>Custom color blending</li>
+                            <li>Balayage and hand-painted techniques</li>
+                            <li>Gray blending solutions</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1596704012038-52efba2c4e71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="service-icon">💆</div>
                     <div class="service-content">
-                        <h3>Hair Treatments</h3>
-                        <p>Restore and rejuvenate your hair with our premium conditioning and repair treatments.</p>
-                        <p class="service-price">Starting at $35</p>
+                        <h3>Hair Wellness Treatments</h3>
+                        <p>Restore vitality to stressed hair with our targeted treatment protocols. From moisture rehabilitation to protein restructuring, we address your hair's specific needs.</p>
+                        <ul class="service-features">
+                            <li>Diagnostic hair analysis</li>
+                            <li>Custom treatment formulations</li>
+                            <li>Scalp health optimization</li>
+                            <li>Post-color soothing treatments</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container about-content">
-            <div class="about-text">
-                <h2>About Luxe Hair Studio</h2>
-                <p>Founded in 2010, Luxe Hair Studio has been providing exceptional hair services to our valued clients for over a decade. Our team of experienced stylists stays current with the latest trends and techniques to ensure you receive the best possible service.</p>
-                <p>We believe that everyone deserves to feel confident and beautiful, and we're committed to helping you achieve your hair goals in a welcoming and luxurious environment.</p>
-                <a href="#contact" class="cta-button">Meet Our Team</a>
-            </div>
-            <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our salon interior">
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
+    <!-- Education Section -->
+    <section class="education" id="education">
         <div class="container">
             <div class="section-title">
-                <h2>What Our Clients Say</h2>
-                <p>Don't just take our word for it - hear from our satisfied clients.</p>
+                <h2>Hair Wellness Education</h2>
+                <p>Knowledge is the foundation of beautiful, healthy hair</p>
             </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "I've been coming to Luxe for years and wouldn't trust anyone else with my hair. The stylists are true artists!"
+            <div class="education-content">
+                <div class="education-articles">
+                    <div class="article-card">
+                        <h4>Understanding Your Hair's Unique Language</h4>
+                        <p>Learn to interpret what your hair is telling you through its texture, elasticity, and behavior. We'll help you understand the difference between damaged hair and hair that simply needs different care.</p>
+                        <a href="#" class="read-more">Read our guide</a>
                     </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar"></div>
-                        <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Regular Client</p>
-                        </div>
+                    <div class="article-card">
+                        <h4>The Truth About Sulfates and Silicones</h4>
+                        <p>Not all sulfates and silicones are created equal. We break down the science behind these controversial ingredients and help you make informed choices for your hair type.</p>
+                        <a href="#" class="read-more">Learn the facts</a>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "The color correction service saved my hair after a bad experience elsewhere. I'm so grateful for their expertise!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar"></div>
-                        <div class="author-info">
-                            <h4>Michelle Rodriguez</h4>
-                            <p>New Client</p>
-                        </div>
+                    <div class="article-card">
+                        <h4>Seasonal Hair Care Adjustments</h4>
+                        <p>Just like your skin, your hair has different needs throughout the year. Discover how to adjust your routine with the changing seasons for optimal hair health.</p>
+                        <a href="#" class="read-more">Explore seasonal tips</a>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "The atmosphere is so relaxing, and the results are always perfect. Highly recommend this salon!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar"></div>
-                        <div class="author-info">
-                            <h4>James Wilson</h4>
-                            <p>Regular Client</p>
-                        </div>
-                    </div>
+                <div class="education-text">
+                    <h3>Your Hair Health Journey</h3>
+                    <p>At Verona, we believe education is essential to maintaining beautiful hair between appointments. Our stylists don't just create your look—they equip you with the knowledge to recreate and maintain it at home.</p>
+                    <p>We've developed comprehensive guides on everything from understanding your hair's porosity to selecting the right tools for your texture. These resources are available to all our clients as part of our commitment to your long-term hair wellness.</p>
+                    <p>During your appointment, your stylist will provide personalized recommendations for at-home care, demonstrating techniques and products that will work specifically for your hair type and lifestyle.</p>
+                    <a href="#contact" class="cta-button">Schedule a Consultation</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
+    <!-- Team Section -->
+    <section class="team" id="team">
         <div class="container">
-            <h2>Ready for a Hair Transformation?</h2>
-            <p>Book your appointment today and experience the Luxe difference. New clients receive 15% off their first service!</p>
-            <a href="#contact" class="cta-button">Book Your Appointment</a>
+            <div class="section-title">
+                <h2>Meet Our Artisans</h2>
+                <p>Skilled hands, artistic vision, and a passion for hair wellness</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Elena Rodriguez</h3>
+                        <div class="member-role">Creative Director & Color Specialist</div>
+                        <p class="member-bio">With over 12 years of experience, Elena specializes in color correction and creating dimensional color that enhances natural beauty. Her background in fine arts informs her unique approach to hair color.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Marcus Chen</h3>
+                        <div class="member-role">Cutting Specialist & Texture Expert</div>
+                        <p class="member-bio">Marcus has dedicated his career to mastering cutting techniques for all hair textures. His precision cutting method creates shapes that grow out beautifully and require minimal styling.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Sophie Williams</h3>
+                        <div class="member-role">Hair Wellness Director</div>
+                        <p class="member-bio">Sophie's passion for holistic beauty led her to specialize in hair and scalp health. She develops personalized treatment plans that address both cosmetic concerns and underlying hair health.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-        <div class="container contact-container">
-            <div class="contact-info">
-                <h3>Get In Touch</h3>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div class="contact-text">
-                            <h4>Our Location</h4>
-                            <p>123 Beauty Street, Fashion District<br>New York, NY 10001</p>
+        <div class="container">
+            <div class="section-title">
+                <h2>Visit Our Studio</h2>
+                <p>Experience the Verona difference in the heart of Seattle</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Find Us in Downtown Seattle</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">
+                                <h4>Our Location</h4>
+                                <p>1425 Pine Street<br>Seattle, WA 98101</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-text">
+                                <h4>Phone Number</h4>
+                                <p>(206) 555-HEAR (4327)</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-text">
+                                <h4>Email Address</h4>
+                                <p>hello@veronaatelier.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🕒</div>
+                            <div class="contact-text">
+                                <h4>Opening Hours</h4>
+                                <p>Tuesday - Saturday: 9am-7pm<br>Sunday: 10am-4pm<br>Monday: Closed</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div class="contact-text">
-                            <h4>Phone Number</h4>
-                            <p>(555) 123-4567</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div class="contact-text">
-                            <h4>Email Address</h4>
-                            <p>info@luxehairstudio.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🕒</div>
-                        <div class="contact-text">
-                            <h4>Opening Hours</h4>
-                            <p>Mon-Fri: 9am-7pm<br>Sat: 9am-5pm<br>Sun: 10am-4pm</p>
-                        </div>
+                    <div class="studio-info">
+                        <h4>About Your Visit</h4>
+                        <p>We recommend scheduling appointments at least two weeks in advance, especially for new clients or complex color services. Complimentary consultations are available to discuss your hair goals before booking major services.</p>
+                        <p>Our studio is located in the historic Pioneer Square district, with convenient parking options nearby. We welcome you to arrive 10 minutes early to enjoy a cup of tea and complete your client profile.</p>
                     </div>
                 </div>
-            </div>
-            <div class="contact-form">
-                <h3>Book Your Appointment</h3>
-                <form id="appointment-form">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Service Interested In</label>
-                        <select id="service" class="form-control" required>
-                            <option value="">Select a service</option>
-                            <option value="haircut">Haircut & Styling</option>
-                            <option value="coloring">Hair Coloring</option>
-                            <option value="treatment">Hair Treatment</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Additional Message</label>
-                        <textarea id="message" class="form-control"></textarea>
-                    </div>
-                    <button type="submit" class="cta-button" style="width: 100%;">Book Appointment</button>
-                </form>
+                <div class="contact-form">
+                    <h3>Book Your Consultation</h3>
+                    <form id="appointment-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service-interest">Service Interest</label>
+                            <select id="service-interest" class="form-control" required>
+                                <option value="">Select a service</option>
+                                <option value="consultation">Complimentary Consultation</option>
+                                <option value="cutting">Signature Cutting</option>
+                                <option value="color">Organic Color Design</option>
+                                <option value="treatment">Hair Wellness Treatment</option>
+                                <option value="multiple">Multiple Services</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Tell Us About Your Hair Goals</label>
+                            <textarea id="message" class="form-control" placeholder="What would you like to achieve with your hair? Any current challenges or concerns?"></textarea>
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%;">Request Appointment</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -687,54 +923,60 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-col">
-                    <h3>Luxe Hair Studio</h3>
-                    <p>Premium hair services in a luxurious environment. Transform your look with our expert stylists.</p>
+                    <h3>Verona Hair Atelier</h3>
+                    <p>Where hair becomes art. Experience bespoke cuts, organic color, and hair wellness treatments in our Seattle studio.</p>
                     <div class="social-links">
-                        <a href="#">FB</a>
                         <a href="#">IG</a>
-                        <a href="#">TW</a>
+                        <a href="#">FB</a>
+                        <a href="#">PT</a>
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h3>Quick Links</h3>
+                    <h3>Explore</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
+                        <li><a href="#philosophy">Our Philosophy</a></li>
                         <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#education">Hair Wellness</a></li>
+                        <li><a href="#team">Our Artisans</a></li>
+                        <li><a href="#contact">Visit Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Services</h3>
                     <ul>
-                        <li><a href="#">Hair Cutting</a></li>
-                        <li><a href="#">Hair Coloring</a></li>
+                        <li><a href="#">Signature Cutting</a></li>
+                        <li><a href="#">Organic Color</a></li>
                         <li><a href="#">Hair Treatments</a></li>
-                        <li><a href="#">Styling</a></li>
+                        <li><a href="#">Scalp Health</a></li>
                         <li><a href="#">Special Occasions</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Contact Info</h3>
+                    <h3>Contact</h3>
                     <ul>
-                        <li>123 Beauty Street, NY 10001</li>
-                        <li>(555) 123-4567</li>
-                        <li>info@luxehairstudio.com</li>
+                        <li>1425 Pine Street, Seattle</li>
+                        <li>(206) 555-HEAR</li>
+                        <li>hello@veronaatelier.com</li>
+                        <li>Tuesday - Saturday: 9am-7pm</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Luxe Hair Studio. All rights reserved.</p>
+                <p>&copy; 2023 Verona Hair Atelier. All rights reserved. | <a href="#" style="color:#bbb;">Privacy Policy</a> | <a href="#" style="color:#bbb;">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+        
         // Form submission handling
         document.getElementById('appointment-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your appointment request! We will contact you shortly to confirm your booking.');
+            alert('Thank you for your appointment request! We will contact you within 24 hours to confirm your consultation.');
             this.reset();
         });
         
@@ -749,9 +991,12 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('main-nav').classList.remove('active');
                 }
             });
         });
