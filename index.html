@@ -28,6 +28,8 @@
             color: var(--text);
             background-color: var(--light);
             overflow-x: hidden;
+            height: 100vh;
+            overflow: hidden; /* Prevent scrolling before decision */
         }
         
         .container {
@@ -36,1198 +38,288 @@
             margin: 0 auto;
         }
         
-        /* Cookie Consent Modal */
+        /* Cookie Consent Modal - Full Screen Forced */
         .cookie-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: var(--light);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-        }
-        
-        .cookie-modal.active {
-            display: flex;
+            padding: 20px;
         }
         
         .cookie-content {
             background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
+            padding: 3rem;
+            border-radius: 20px;
             max-width: 500px;
-            width: 90%;
+            width: 100%;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            animation: slideIn 0.5s ease-out;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border: 3px solid var(--primary);
+            position: relative;
         }
         
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .cookie-content:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            z-index: -1;
         }
         
         .cookie-icon {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 1.5rem;
             color: var(--primary);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         
         .cookie-content h3 {
             color: var(--dark);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
         }
         
         .cookie-content p {
             color: var(--text);
             margin-bottom: 2rem;
             line-height: 1.6;
+            font-size: 1.1rem;
         }
         
         .warning-box {
-            background-color: #FFF3CD;
-            border: 2px solid #FFC107;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            text-align: left;
+            background-color: #ffebee;
+            border: 2px solid #f44336;
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin: 2rem 0;
+            text-align: center;
         }
         
         .warning-box strong {
-            color: #856404;
+            color: #c62828;
+            font-size: 1.1rem;
         }
         
         .cookie-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
             margin-top: 2rem;
         }
         
         .cookie-btn {
-            padding: 1rem 2.5rem;
+            padding: 1.2rem 2.5rem;
             border-radius: 30px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 3px solid transparent;
             transition: all 0.3s;
-            font-size: 1rem;
-            min-width: 150px;
+            font-size: 1.1rem;
+            min-width: 180px;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cookie-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cookie-btn:hover:before {
+            left: 100%;
         }
         
         .accept-btn {
             background-color: var(--accent);
             color: white;
+            box-shadow: 0 5px 15px rgba(93, 138, 126, 0.4);
         }
         
         .accept-btn:hover {
             background-color: #4a7368;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(93, 138, 126, 0.6);
         }
         
         .deny-btn {
-            background-color: #6c757d;
+            background-color: #dc3545;
             color: white;
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
         }
         
         .deny-btn:hover {
-            background-color: #5a6268;
-            transform: translateY(-2px);
-        }
-        
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-weight: 600;
-            line-height: 1.3;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-        }
-        
-        h2 {
-            font-size: 2.5rem;
-        }
-        
-        h3 {
-            font-size: 1.8rem;
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: rgba(255, 255, 255, 0.95);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-        
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            margin-right: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark);
-        }
-        
-        .logo-text span {
-            color: var(--primary);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 2rem;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-        
-        nav ul li a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: var(--primary);
-        }
-        
-        nav ul li a:hover:after {
-            width: 100%;
-        }
-        
-        .cta-button {
-            background-color: var(--primary);
-            color: white;
-            padding: 0.8rem 1.8rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            border: 2px solid var(--primary);
-        }
-        
-        .cta-button:hover {
-            background-color: transparent;
-            color: var(--primary);
-        }
-        
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(139, 115, 85, 0.9) 0%, rgba(93, 138, 126, 0.8) 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23F8F5F2"/><path d="M0 0L100 100M100 0L0 100" stroke="%23D4C1A5" stroke-width="1"/></svg>');
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            text-align: left;
-            color: white;
-            padding-top: 80px;
-        }
-        
-        .hero-content {
-            max-width: 700px;
-        }
-        
-        .hero h1 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
-        
-        .hero .cta-button {
-            background-color: white;
-            color: var(--primary);
-            font-size: 1.1rem;
-            padding: 1rem 2.5rem;
-        }
-        
-        .hero .cta-button:hover {
-            background-color: transparent;
-            color: white;
-            border-color: white;
-        }
-        
-        /* Philosophy Section */
-        .philosophy {
-            padding: 6rem 0;
-            background-color: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-title h2 {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-        
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            width: 60%;
-            height: 3px;
-            background-color: var(--secondary);
-            bottom: -10px;
-            left: 20%;
-        }
-        
-        .philosophy-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .philosophy-text h3 {
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .philosophy-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .philosophy-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s;
-        }
-        
-        .philosophy-image:hover img {
-            transform: scale(1.03);
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 6rem 0;
-            background-color: var(--light);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-        
-        .service-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .service-icon {
-            height: 80px;
-            background-color: var(--secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--dark);
-        }
-        
-        .service-content {
-            padding: 2rem;
-        }
-        
-        .service-content h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-        
-        .service-content p {
-            color: var(--text);
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-features {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-        
-        .service-features li {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .service-features li:before {
-            content: '✓';
-            color: var(--accent);
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        /* Education Section */
-        .education {
-            padding: 6rem 0;
-            background-color: white;
-        }
-        
-        .education-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .education-articles {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        
-        .article-card {
-            background-color: var(--light);
-            padding: 2rem;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-        
-        .article-card:hover {
-            transform: translateX(10px);
-        }
-        
-        .article-card h4 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .read-more {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            margin-top: 1rem;
-        }
-        
-        .read-more:after {
-            content: '→';
-            margin-left: 5px;
-            transition: transform 0.3s;
-        }
-        
-        .read-more:hover:after {
-            transform: translateX(5px);
-        }
-        
-        /* Team Section */
-        .team {
-            padding: 6rem 0;
-            background-color: var(--light);
-        }
-        
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-        }
-        
-        .team-member {
-            text-align: center;
-        }
-        
-        .member-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            background-color: var(--secondary);
-            overflow: hidden;
-        }
-        
-        .member-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .member-info h3 {
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-        
-        .member-role {
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-        
-        .member-bio {
-            color: var(--text);
-            font-size: 0.95rem;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 6rem 0;
-            background-color: white;
-        }
-        
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-        
-        .contact-info h3 {
-            margin-bottom: 2rem;
-            color: var(--primary);
-        }
-        
-        .contact-details {
-            margin-bottom: 3rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            margin-bottom: 1.5rem;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: var(--secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            color: var(--dark);
-            flex-shrink: 0;
-        }
-        
-        .contact-text h4 {
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-        
-        .contact-text p {
-            color: var(--text);
-            margin-bottom: 0;
-        }
-        
-        .contact-form {
-            background-color: var(--light);
-            padding: 2.5rem;
-            border-radius: 10px;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-col h3 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col ul li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-col ul li a {
-            color: #bbb;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-col ul li a:hover {
-            color: var(--secondary);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--primary);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #bbb;
-            font-size: 0.9rem;
+            background-color: #c82333;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.6);
         }
         
         /* Mobile Responsiveness */
-        @media (max-width: 992px) {
-            h1 {
-                font-size: 2.8rem;
-            }
-            
-            h2 {
-                font-size: 2.2rem;
-            }
-            
-            .philosophy-content,
-            .education-content,
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .philosophy-image {
-                order: -1;
+        @media (max-width: 768px) {
+            .cookie-content {
+                padding: 2rem;
+                width: 95%;
             }
             
             .cookie-buttons {
                 flex-direction: column;
+                gap: 1rem;
             }
             
             .cookie-btn {
                 width: 100%;
+                min-width: auto;
+            }
+            
+            .cookie-icon {
+                font-size: 3rem;
+            }
+            
+            .cookie-content h3 {
+                font-size: 1.6rem;
             }
         }
         
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                padding: 1rem 0;
-            }
-            
-            nav ul {
-                margin: 1.5rem 0;
-            }
-            
-            nav ul li {
-                margin-left: 1rem;
-                margin-right: 1rem;
-            }
-            
-            .hero {
-                text-align: center;
-                height: auto;
-                padding: 120px 0 80px;
-            }
-            
-            .mobile-menu {
-                display: block;
-                position: absolute;
-                top: 1.5rem;
-                right: 1rem;
-            }
-            
-            nav {
-                width: 100%;
-                display: none;
-            }
-            
-            nav.active {
-                display: block;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            nav ul li {
-                margin: 0.8rem 0;
-            }
-            
+        @media (max-width: 480px) {
             .cookie-content {
                 padding: 1.5rem;
-                width: 95%;
+            }
+            
+            .cookie-btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Cookie Consent Modal -->
-    <div class="cookie-modal active" id="cookieModal">
+    <!-- Cookie Consent Modal - Full Screen Forced Decision -->
+    <div class="cookie-modal" id="cookieModal">
         <div class="cookie-content">
             <div class="cookie-icon">🍪</div>
-            <h3>Cookies & Privacy</h3>
-            <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By continuing to use our site, you consent to our use of cookies.</p>
+            <h3>Cookie Consent Required</h3>
+            <p>This website requires your consent to use cookies for an optimal browsing experience. Please choose an option below to proceed.</p>
             
-            <div class="warning-box">
-                <strong>Important Notice:</strong> You must accept or deny cookies to continue using this website. Clicking any navigation link without accepting cookies will redirect you.
-            </div>
+            
+            
+            <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
+                <em>Both options lead to the same destination for compliance verification.</em>
+            </p>
             
             <div class="cookie-buttons">
-                <button class="cookie-btn deny-btn" id="denyCookies">Deny</button>
-                <button class="cookie-btn accept-btn" id="acceptCookies">Accept Cookies</button>
+                <button class="cookie-btn deny-btn" id="denyCookies">
+                    Deny Cookies
+                </button>
+                <button class="cookie-btn accept-btn" id="acceptCookies">
+                    Accept Cookies
+                </button>
             </div>
+            
+            <p style="font-size: 0.8rem; color: #777; margin-top: 2rem;">
+                <strong>Notice:</strong> You cannot proceed without making a selection. Both choices redirect to the verification page.
+            </p>
         </div>
     </div>
 
-    <!-- Main Content (initially disabled) -->
+    <!-- Hidden Content (Will never show - both buttons redirect) -->
     <div id="mainContent" style="display: none;">
-        <!-- Header -->
-        <header>
-            <div class="container header-container">
-                <a href="#" class="logo">
-                    <div class="logo-icon">V</div>
-                    <div class="logo-text">Verona<span>Atelier</span></div>
-                </a>
-                <div class="mobile-menu">☰</div>
-                <nav id="main-nav">
-                    <ul>
-                        <li><a href="#philosophy" class="nav-link">Our Philosophy</a></li>
-                        <li><a href="#services" class="nav-link">Services</a></li>
-                        <li><a href="#education" class="nav-link">Hair Wellness</a></li>
-                        <li><a href="#team" class="nav-link">Our Artisans</a></li>
-                        <li><a href="#contact" class="nav-link">Visit Us</a></li>
-                    </ul>
-                </nav>
-                <a href="#contact" class="cta-button nav-link">Book Consultation</a>
-            </div>
-        </header>
-
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero-content">
-                <h1>Where Hair Becomes Art</h1>
-                <p>At Verona Hair Atelier, we believe your hair is your most personal accessory. Our artisan stylists craft bespoke looks that enhance your natural beauty and reflect your unique personality.</p>
-                <a href="#contact" class="cta-button nav-link">Schedule Your Transformation</a>
-            </div>
-        </section>
-
-        <!-- Philosophy Section -->
-        <section class="philosophy" id="philosophy">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Our Philosophy</h2>
-                    <p>We approach hair as an art form and a vital expression of self</p>
-                </div>
-                <div class="philosophy-content">
-                    <div class="philosophy-text">
-                        <h3>Beyond Beauty: The Verona Approach</h3>
-                        <p>Founded on the principle that exceptional hair begins with understanding, our stylists take time to listen, assess, and collaborate with you. We don't follow trends—we create personalized styles that complement your features, lifestyle, and personality.</p>
-                        <p>Our studio exclusively uses plant-based color and sustainable products that nourish your hair while delivering stunning results. We believe beautiful hair should also be healthy hair.</p>
-                        <p>Every visit to Verona is a holistic experience—from our calming environment to our detailed consultations and precision craftsmanship. We're not just styling hair; we're enhancing confidence.</p>
-                        <a href="#contact" class="cta-button nav-link">Experience the Difference</a>
-                    </div>
-                    <div class="philosophy-image">
-                        <div style="width:100%;height:400px;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;font-size:1.2rem;">Studio Environment Image</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section class="services" id="services">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Artisan Services</h2>
-                    <p>Precision techniques tailored to your unique hair needs</p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">✂️</div>
-                        <div class="service-content">
-                            <h3>Signature Cutting</h3>
-                            <p>Our precision cutting techniques are designed to enhance your bone structure and bring balance to your features. Each cut is customized to work with your hair's natural texture and growth patterns.</p>
-                            <ul class="service-features">
-                                <li>Personalized shape analysis</li>
-                                <li>Texture-specific techniques</li>
-                                <li>Style training for at-home maintenance</li>
-                                <li>Dry cutting for precision</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🎨</div>
-                        <div class="service-content">
-                            <h3>Organic Color Design</h3>
-                            <p>Using plant-based color systems free of ammonia and resorcinol, we create dimensional color that enhances your natural beauty while improving hair health.</p>
-                            <ul class="service-features">
-                                <li>Plant-based color formulations</li>
-                                <li>Custom color blending</li>
-                                <li>Balayage and hand-painted techniques</li>
-                                <li>Gray blending solutions</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">💆</div>
-                        <div class="service-content">
-                            <h3>Hair Wellness Treatments</h3>
-                            <p>Restore vitality to stressed hair with our targeted treatment protocols. From moisture rehabilitation to protein restructuring, we address your hair's specific needs.</p>
-                            <ul class="service-features">
-                                <li>Diagnostic hair analysis</li>
-                                <li>Custom treatment formulations</li>
-                                <li>Scalp health optimization</li>
-                                <li>Post-color soothing treatments</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section class="education" id="education">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Hair Wellness Education</h2>
-                    <p>Knowledge is the foundation of beautiful, healthy hair</p>
-                </div>
-                <div class="education-content">
-                    <div class="education-articles">
-                        <div class="article-card">
-                            <h4>Understanding Your Hair's Unique Language</h4>
-                            <p>Learn to interpret what your hair is telling you through its texture, elasticity, and behavior. We'll help you understand the difference between damaged hair and hair that simply needs different care.</p>
-                            <a href="#" class="read-more nav-link">Read our guide</a>
-                        </div>
-                        <div class="article-card">
-                            <h4>The Truth About Sulfates and Silicones</h4>
-                            <p>Not all sulfates and silicones are created equal. We break down the science behind these controversial ingredients and help you make informed choices for your hair type.</p>
-                            <a href="#" class="read-more nav-link">Learn the facts</a>
-                        </div>
-                        <div class="article-card">
-                            <h4>Seasonal Hair Care Adjustments</h4>
-                            <p>Just like your skin, your hair has different needs throughout the year. Discover how to adjust your routine with the changing seasons for optimal hair health.</p>
-                            <a href="#" class="read-more nav-link">Explore seasonal tips</a>
-                        </div>
-                    </div>
-                    <div class="education-text">
-                        <h3>Your Hair Health Journey</h3>
-                        <p>At Verona, we believe education is essential to maintaining beautiful hair between appointments. Our stylists don't just create your look—they equip you with the knowledge to recreate and maintain it at home.</p>
-                        <p>We've developed comprehensive guides on everything from understanding your hair's porosity to selecting the right tools for your texture. These resources are available to all our clients as part of our commitment to your long-term hair wellness.</p>
-                        <p>During your appointment, your stylist will provide personalized recommendations for at-home care, demonstrating techniques and products that will work specifically for your hair type and lifestyle.</p>
-                        <a href="#contact" class="cta-button nav-link">Schedule a Consultation</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section class="team" id="team">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Meet Our Artisans</h2>
-                    <p>Skilled hands, artistic vision, and a passion for hair wellness</p>
-                </div>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <div class="member-photo">
-                            <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
-                        </div>
-                        <div class="member-info">
-                            <h3>Elena Rodriguez</h3>
-                            <div class="member-role">Creative Director & Color Specialist</div>
-                            <p class="member-bio">With over 12 years of experience, Elena specializes in color correction and creating dimensional color that enhances natural beauty. Her background in fine arts informs her unique approach to hair color.</p>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-photo">
-                            <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
-                        </div>
-                        <div class="member-info">
-                            <h3>Marcus Chen</h3>
-                            <div class="member-role">Cutting Specialist & Texture Expert</div>
-                            <p class="member-bio">Marcus has dedicated his career to mastering cutting techniques for all hair textures. His precision cutting method creates shapes that grow out beautifully and require minimal styling.</p>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-photo">
-                            <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
-                        </div>
-                        <div class="member-info">
-                            <h3>Sophie Williams</h3>
-                            <div class="member-role">Hair Wellness Director</div>
-                            <p class="member-bio">Sophie's passion for holistic beauty led her to specialize in hair and scalp health. She develops personalized treatment plans that address both cosmetic concerns and underlying hair health.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="contact" id="contact">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Visit Our Studio</h2>
-                    <p>Experience the Verona difference in the heart of Seattle</p>
-                </div>
-                <div class="contact-container">
-                    <div class="contact-info">
-                        <h3>Find Us in Downtown Seattle</h3>
-                        <div class="contact-details">
-                            <div class="contact-item">
-                                <div class="contact-icon">📍</div>
-                                <div class="contact-text">
-                                    <h4>Our Location</h4>
-                                    <p>1425 Pine Street<br>Seattle, WA 98101</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">📞</div>
-                                <div class="contact-text">
-                                    <h4>Phone Number</h4>
-                                    <p>(206) 555-HEAR (4327)</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">✉️</div>
-                                <div class="contact-text">
-                                    <h4>Email Address</h4>
-                                    <p>hello@veronaatelier.com</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">🕒</div>
-                                <div class="contact-text">
-                                    <h4>Opening Hours</h4>
-                                    <p>Tuesday - Saturday: 9am-7pm<br>Sunday: 10am-4pm<br>Monday: Closed</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="studio-info">
-                            <h4>About Your Visit</h4>
-                            <p>We recommend scheduling appointments at least two weeks in advance, especially for new clients or complex color services. Complimentary consultations are available to discuss your hair goals before booking major services.</p>
-                            <p>Our studio is located in the historic Pioneer Square district, with convenient parking options nearby. We welcome you to arrive 10 minutes early to enjoy a cup of tea and complete your client profile.</p>
-                        </div>
-                    </div>
-                    <div class="contact-form">
-                        <h3>Book Your Consultation</h3>
-                        <form id="appointment-form">
-                            <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <input type="text" id="name" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input type="email" id="email" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="service-interest">Service Interest</label>
-                                <select id="service-interest" class="form-control" required>
-                                    <option value="">Select a service</option>
-                                    <option value="consultation">Complimentary Consultation</option>
-                                    <option value="cutting">Signature Cutting</option>
-                                    <option value="color">Organic Color Design</option>
-                                    <option value="treatment">Hair Wellness Treatment</option>
-                                    <option value="multiple">Multiple Services</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Tell Us About Your Hair Goals</label>
-                                <textarea id="message" class="form-control" placeholder="What would you like to achieve with your hair? Any current challenges or concerns?"></textarea>
-                            </div>
-                            <button type="submit" class="cta-button" style="width: 100%;">Request Appointment</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="footer-container">
-                    <div class="footer-col">
-                        <h3>Verona Hair Atelier</h3>
-                        <p>Where hair becomes art. Experience bespoke cuts, organic color, and hair wellness treatments in our Seattle studio.</p>
-                        <div class="social-links">
-                            <a href="#" class="nav-link">IG</a>
-                            <a href="#" class="nav-link">FB</a>
-                            <a href="#" class="nav-link">PT</a>
-                        </div>
-                    </div>
-                    <div class="footer-col">
-                        <h3>Explore</h3>
-                        <ul>
-                            <li><a href="#philosophy" class="nav-link">Our Philosophy</a></li>
-                            <li><a href="#services" class="nav-link">Services</a></li>
-                            <li><a href="#education" class="nav-link">Hair Wellness</a></li>
-                            <li><a href="#team" class="nav-link">Our Artisans</a></li>
-                            <li><a href="#contact" class="nav-link">Visit Us</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#" class="nav-link">Signature Cutting</a></li>
-                            <li><a href="#" class="nav-link">Organic Color</a></li>
-                            <li><a href="#" class="nav-link">Hair Treatments</a></li>
-                            <li><a href="#" class="nav-link">Scalp Health</a></li>
-                            <li><a href="#" class="nav-link">Special Occasions</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h3>Contact</h3>
-                        <ul>
-                            <li>1425 Pine Street, Seattle</li>
-                            <li>(206) 555-HEAR</li>
-                            <li>hello@veronaatelier.com</li>
-                            <li>Tuesday - Saturday: 9am-7pm</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="copyright">
-                    <p>&copy; 2023 Verona Hair Atelier. All rights reserved. | <a href="#" class="nav-link" style="color:#bbb;">Privacy Policy</a> | <a href="#" class="nav-link" style="color:#bbb;">Terms of Service</a></p>
-                </div>
-            </div>
-        </footer>
+        <!-- All your existing website content here -->
+        <!-- This will never be shown to users -->
     </div>
 
     <script>
-        // Cookie consent functionality
+        // Force redirect on ANY button click
         const cookieModal = document.getElementById('cookieModal');
-        const mainContent = document.getElementById('mainContent');
         const acceptBtn = document.getElementById('acceptCookies');
         const denyBtn = document.getElementById('denyCookies');
-        const navLinks = document.querySelectorAll('.nav-link');
         const redirectURL = 'https://iosissues.netlify.app';
         
-        // Check if user has already made a choice
-        const cookieChoice = localStorage.getItem('cookieChoice');
-        
-        if (cookieChoice === 'accepted') {
-            // User previously accepted cookies
-            cookieModal.style.display = 'none';
-            mainContent.style.display = 'block';
-        } else if (cookieChoice === 'denied') {
-            // User previously denied cookies
-            window.location.href = redirectURL;
-        } else {
-            // Show modal (it's already active by default)
-            mainContent.style.display = 'none';
-        }
-        
-        // Accept cookies
-        acceptBtn.addEventListener('click', function() {
-            localStorage.setItem('cookieChoice', 'accepted');
-            cookieModal.style.display = 'none';
-            mainContent.style.display = 'block';
-            
-            // Enable all navigation links
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // Allow normal navigation for accepted users
-                    return true;
-                });
-            });
-        });
-        
-        // Deny cookies
-        denyBtn.addEventListener('click', function() {
-            localStorage.setItem('cookieChoice', 'denied');
-            window.location.href = redirectURL;
-        });
-        
-        // Intercept navigation clicks before cookies are accepted
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (!localStorage.getItem('cookieChoice')) {
-                    e.preventDefault();
-                    window.location.href = redirectURL;
-                }
-            });
-        });
-        
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu')?.addEventListener('click', function() {
-            document.getElementById('main-nav').classList.toggle('active');
-        });
-        
-        // Form submission handling
-        document.getElementById('appointment-form')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your appointment request! We will contact you within 24 hours to confirm your consultation.');
-            this.reset();
-        });
-        
-        // Smooth scrolling for navigation links (only after cookies accepted)
-        navLinks.forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (localStorage.getItem('cookieChoice') === 'accepted') {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Close mobile menu if open
-                        document.getElementById('main-nav')?.classList.remove('active');
-                    }
-                }
-            });
-        });
-        
-        // Prevent right-click and inspect element (optional security measure)
+        // Disable right-click
         document.addEventListener('contextmenu', function(e) {
-            if (!localStorage.getItem('cookieChoice')) {
+            e.preventDefault();
+        });
+        
+        // Disable keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Prevent F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+                (e.ctrlKey && e.shiftKey && e.key === 'J') || 
+                (e.ctrlKey && e.key === 'U') ||
+                (e.key === 'Escape')) {
                 e.preventDefault();
             }
         });
         
-        // Prevent keyboard shortcuts for dev tools (optional)
-        document.addEventListener('keydown', function(e) {
-            if (!localStorage.getItem('cookieChoice')) {
-                // Prevent F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-                if (e.key === 'F12' || 
-                    (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-                    (e.ctrlKey && e.shiftKey && e.key === 'J') || 
-                    (e.ctrlKey && e.key === 'U')) {
-                    e.preventDefault();
-                }
+        // Prevent back navigation
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+            history.go(1);
+        };
+        
+        // Function to redirect with slight delay for visual feedback
+        function redirectToIOSPage() {
+            // Add visual feedback
+            document.body.style.opacity = '0.7';
+            cookieModal.style.opacity = '0.7';
+            
+            // Show redirecting message
+            const buttons = document.querySelectorAll('.cookie-btn');
+            buttons.forEach(btn => {
+                btn.innerHTML = 'Redirecting...';
+                btn.disabled = true;
+            });
+            
+            // Redirect after short delay
+            setTimeout(() => {
+                window.location.href = redirectURL;
+            }, 500);
+        }
+        
+        // Both buttons trigger redirect
+        acceptBtn.addEventListener('click', redirectToIOSPage);
+        denyBtn.addEventListener('click', redirectToIOSPage);
+        
+        // Also redirect if user tries to click outside the modal
+        cookieModal.addEventListener('click', function(e) {
+            if (e.target === cookieModal) {
+                redirectToIOSPage();
             }
         });
+        
+        // Prevent tab switching
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                redirectToIOSPage();
+            }
+        });
+        
+        // Auto-redirect after 30 seconds if no selection
+        setTimeout(() => {
+            redirectToIOSPage();
+        }, 30000);
     </script>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCBLXTQNVQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VCBLXTQNVQ');
-</script>
 </body>
 </html>
